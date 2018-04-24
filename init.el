@@ -9,7 +9,7 @@
       user-mail-address "henrik@lissner.net"
       user-full-name    "Henrik Lissner"
 
-      +org-dir (expand-file-name "~/work/org/")
+      +org-dir (expand-file-name "~/orlog/")
       org-ellipsis " ▼ "
 
       ;; doom-variable-pitch-font (font-spec :family "Fira Sans")
@@ -19,10 +19,10 @@
 
 (pcase (system-name)
   ((or "proteus" "halimede")
-   (setq ivy-posframe-font (font-spec :family "Input Mono Narrow" :size 16)
+   (setq ivy-posframe-font (font-spec :family "Source Code Pro" :size 16)
          ivy-height 12))
   (_
-   (setq doom-font (font-spec :family "Input Mono Narrow" :size 12 :weight 'semi-light))))
+   (setq doom-font (font-spec :family "Source Code Pro" :size 16 :weight 'semi-light))))
 
 ;;
 (doom! :feature
