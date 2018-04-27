@@ -1,6 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (map-put default-frame-alist 'inhibit-double-buffering t)
+(toggle-frame-maximized)
 
 ;; I've swapped these keys on my keyboard
 (setq x-super-keysym 'alt
