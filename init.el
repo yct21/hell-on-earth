@@ -140,4 +140,8 @@
       ; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :config
-       (default +bindings +snippets +evil-commands))
+       (default +bindings +snippets +evil-commands)
+       :private
+       (personal +keybindings)
+       ranger
+       )

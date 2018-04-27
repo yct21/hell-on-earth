@@ -1,0 +1,6 @@
+#+TITLE: Module Personal
+
+* Personal module
+
+This module is to store my personal settings that are not complex enough to be a seperated module.
+
