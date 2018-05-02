@@ -8,7 +8,7 @@
   (load! +org-projectile))
 
 (map!
- (:localleader
+ (:map org-mode-map
+  :localleader
    (:desc "Insert element" :prefix "i"
-     :desc "Insert drawer" :n "d" #'org-insert-drawer
-     )))
+     :desc "Insert drawer" :n "d" #'org-insert-drawer)))
