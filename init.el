@@ -145,4 +145,5 @@
        :private
        (personal +keybindings)
        ranger
+       (org +org-projectile)
        )
