@@ -16,6 +16,8 @@
 
   ;; -------<leader>-------
   (:leader
+    (:desc "Previous buffer" :n "TAB" #'previous-buffer)
+
     (:desc "workspace" :prefix "l"
       :desc "New workspace" :n "n" #'+workspace/new
       :desc "Save workspace to file"   :n "s"   #'+workspace/save
