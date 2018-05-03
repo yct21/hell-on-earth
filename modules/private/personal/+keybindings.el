@@ -17,6 +17,7 @@
  ;; -------<leader>-------
  (:leader
    (:desc "Previous buffer" :n "TAB" #'previous-buffer)
+   (:desc "Switch workspace buffer" :n "SPC" #'+ivy/switch-workspace-buffer)
 
    (:desc "workspace" :prefix "l"
      :desc "New workspace" :n "n" #'+workspace/new
@@ -37,7 +38,6 @@
      :desc "Scratch buffer" :n "s" #'doom/open-scratch-buffer
      :desc "Message buffer" :n "m" (lambda! (switch-to-buffer "*Messages*")))
 
-
    (:desc "file" :prefix "f"
      :desc "Find file" :n "f" #'find-file
      :desc "Sudo find file" :n "F" #'doom/sudo-find-file
@@ -53,7 +53,6 @@
      :desc "Yank filename" :n "y" #'+default/yank-buffer-filename
      :desc "Find file in private config" :n "p" #'+default/find-in-config
      :desc "Browse private config" :n "P" #'+default/browse-config)
-
 
    (:desc "git" :prefix "g"
      :desc "Magit blame" :n "b" #'magit-blame
