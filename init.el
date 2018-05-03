@@ -155,4 +155,5 @@
        (personal +keybindings)
        ranger
        (org +org-projectile)
+       elisp
        )

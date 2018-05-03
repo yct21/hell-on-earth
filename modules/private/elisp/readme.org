@@ -1,0 +1,8 @@
+#+TITLE: private/elisp
+
+* Emacs-lisp
+
+This module is additional configurations to :lang/emacs-lisp in doom. 
+
+** Keybindings
+
