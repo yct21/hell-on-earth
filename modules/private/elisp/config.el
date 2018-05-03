@@ -10,7 +10,8 @@
                                    #'(lambda () (lispyville-prettify (point-min) (point-max))))))
   (lispyville-set-key-theme
    `(operators
-     prettify)))
+     prettify))
+  (elisp/define-keybindings))
 
 (defun elisp/define-keybindings ()
   "Define keybindings for lispyville"
