@@ -154,6 +154,8 @@
        :private
        (personal +keybindings)
        ranger
-       (org +org-projectile)
+       (org
+        +org-projectile
+        +org-journal)
        elisp
        )

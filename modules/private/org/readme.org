@@ -1,0 +1,5 @@
+#+TITLE: private/org
+
+* Org module
+
+This module is additional configurations to :lang/org in doom. 
