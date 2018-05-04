@@ -11,10 +11,10 @@
  :ne "M-d" #'evil-scroll-down
  :ne "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
- :nv "s" #'avy-goto-char
- :nv "S" #'avy-goto-line
- :nv "f" #'evil-snipe-s
- :nv "F" #'evil-snipe-S
+
+ (:after avy
+   :nv "s" #'avy-goto-char
+   :nv "S" #'avy-goto-line)
 
  ;; -------<leader>-------
  (:leader
