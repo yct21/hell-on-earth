@@ -1,0 +1,6 @@
+#+TITLE: Chinese module
+
+* Chinese
+
+This module is pirated from spacemacs.
+

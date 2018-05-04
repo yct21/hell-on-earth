@@ -158,4 +158,6 @@
         +org-projectile
         +org-journal)
        elisp
+       chinese
        )
+
