@@ -124,5 +124,6 @@
        ranger
 
        :private-ui
-       neutral-title-bar)
+       neutral-title-bar
+       page-break-line)
 
