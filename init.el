@@ -111,7 +111,9 @@
        (default +bindings +snippets +evil-commands)
 
        :private-config
-       (personal +keybindings)
+       (personal
+        +keybindings
+        +mru-workspace)
        chinese
 
        :private-lang
