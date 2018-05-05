@@ -21,6 +21,14 @@
    (:desc "Previous buffer" :n "TAB" #'previous-buffer)
    (:desc "Switch workspace buffer" :n "SPC" #'+ivy/switch-workspace-buffer)
 
+   (:desc "search" :prefix "s"
+     :desc "Project" :nv "p" #'+ivy/project-search
+     :desc "Directory" :nv "d" (λ! (+ivy/project-search t))
+     :desc "Buffer" :nv "b" #'swiper
+     :desc "Symbols" :nv "i" #'imenu
+     :desc "Symbols across buffers" :nv "I" #'imenu-anywhere
+     :desc "Online providers" :nv "o" #'+lookup/online-select)
+
    (:desc "workspace" :prefix "l"
      :desc "New workspace" :n "n" #'+workspace/new
      :desc "Save workspace to file" :n "s" #'+workspace/save
