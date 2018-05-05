@@ -67,7 +67,6 @@
        posframe               ; use child frames where possible (Emacs 26+ only)
 
        :tools
-       dired                     ; making dired pretty [functional]
        electric-indent           ; smarter, keyword-based electric-indent
        eshell                    ; a consistent, cross-platform shell (WIP)
        imenu                     ; an imenu sidebar and searchable code index
@@ -119,5 +118,8 @@
        (org
         +org-projectile
         +org-journal)
-       elisp)
+       elisp
+
+       :private-tools
+       ranger)
 
