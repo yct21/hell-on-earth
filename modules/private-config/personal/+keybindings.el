@@ -81,7 +81,7 @@
      :desc "Find file in project" :n "f" #'projectile-find-file
      :desc "Run cmd in project root" :nv "!" #'projectile-run-shell-command-in-root
      :desc "Compile project" :n "c" #'projectile-compile-project
-     (:when (featurep! :private org +org-projectile)
+     (:when (featurep! :private-lang org +org-projectile)
        :desc "Goto todo" :n "o" #'+org/projectile-goto-todo)
      :desc "Switch project" :n "p" #'projectile-switch-project
      :desc "Recent project files" :n "r" #'projectile-recentf
