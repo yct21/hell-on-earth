@@ -121,5 +121,8 @@
        elisp
 
        :private-tools
-       ranger)
+       ranger
+
+       :private-ui
+       neutral-title-bar)
 
