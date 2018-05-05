@@ -6,12 +6,12 @@
                 (let ((cur-persp-name (safe-persp-name (get-current-persp)))
                       (nil-persp (car persp-names-cache))
                       (other-persps (cdr persp-names-cache)))
-                  (when (member cur-persp-name other-persps)
+                  (when (member new-persp-name other-persps)
                     (setq persp-names-cache
                           (cons nil-persp
                                 (cons
-                                 cur-persp-name
-                                 (delete cur-persp-name other-persps))))))))
+                                 new-persp-name
+                                 (delete new-persp-name other-persps))))))))
 
   (add-hook 'persp-renamed-functions
             #'(lambda (persp old-name new-name)
@@ -20,7 +20,7 @@
                        (car persp-names-cache)
                        (cons
                         new-name
-                        (delete old-name (cdr persp-names-cache)))))))
+                        (delete new-name (cdr persp-names-cache)))))))
 
   (add-hook 'persp-before-kill-functions
             #'(lambda (persp)
