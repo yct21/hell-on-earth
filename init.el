@@ -110,13 +110,14 @@
 
        :config
        (default +bindings +snippets +evil-commands)
-       :private
-       ranger
+
+       :private-config
+       (personal +keybindings)
+       chinese
+
+       :private-lang
        (org
         +org-projectile
         +org-journal)
-       elisp
-       chinese
-       :private-config
-       (personal +keybindings))
+       elisp)
 
