@@ -7,5 +7,5 @@
   (setq avy-all-windows 'all-frames))
 
 (setq-default frame-title-format
-              '("Emacs   |   "
+              '("别浪费时间折腾编辑器了……   |   "
                 (:eval (+workspace--tabline))))

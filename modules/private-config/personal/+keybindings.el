@@ -15,6 +15,10 @@
  :ne "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
+ (:map evil-window-map
+   "d" #'+workspace/close-window-or-workspace
+   "D" #'ace-delete-window)
+
  (:after avy
    :nv "s" #'avy-goto-char
    :nv "S" #'avy-goto-line)
