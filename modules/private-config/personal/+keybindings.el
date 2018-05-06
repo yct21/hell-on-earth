@@ -19,6 +19,24 @@
    "d" #'+workspace/close-window-or-workspace
    "D" #'ace-delete-window)
 
+ ;; ivy
+ (:after ivy
+   :map ivy-minibuffer-map
+   [escape] #'keyboard-escape-quit
+   "TAB" #'ivy-call-and-recenter
+   "M-z" #'undo
+   "M-v" #'yank
+   "C-v" #'yank
+   "C-r" #'evil-paste-from-register
+   "M-k" #'ivy-previous-line
+   "M-j" #'ivy-next-line
+   "M-u" #'ivy-scroll-down-command
+   "M-d" #'ivy-scroll-up-command
+   "C-l" #'ivy-alt-done
+   "C-u" #'ivy-kill-line
+   "C-b" #'backward-word
+   "C-f" #'forward-word)
+
  (:after avy
    :nv "s" #'avy-goto-char
    :nv "S" #'avy-goto-line)
