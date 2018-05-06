@@ -7,5 +7,5 @@
   (setq avy-all-windows 'all-frames))
 
 (setq-default frame-title-format
-              '("别浪费时间折腾编辑器了……   |   "
+              '("欢迎回来，指挥官   |   "
                 (:eval (+workspace--tabline))))
