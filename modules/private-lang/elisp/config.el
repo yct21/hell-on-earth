@@ -5,9 +5,9 @@
   :config
 
   ;; Prettify when save
-  (add-hook 'emacs-lisp-mode-hook
-            #'(lambda () (add-hook 'before-save-hook
-                                   #'(lambda () (lispyville-prettify (point-min) (point-max))))))
+  ;; (add-hook 'emacs-lisp-mode-hook
+  ;;           #'(lambda () (add-hook 'before-save-hook
+  ;;                                  #'(lambda () (lispyville-prettify (point-min) (point-max))))))
   (lispyville-set-key-theme
    `(operators
      prettify))
