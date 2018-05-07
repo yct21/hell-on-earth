@@ -3,9 +3,6 @@
 ;; General keybindings that modifies doom default bindings
 
 (map!
- ;; show workspace
- :ne "M-`" #'+workspace/display
-
  ;; company
  :ni "M-i" #'+company/complete
 
@@ -17,7 +14,9 @@
 
  (:map evil-window-map
    "d" #'+workspace/close-window-or-workspace
-   "D" #'ace-delete-window)
+   "D" #'ace-delete-window
+   "S" #'+evil*window-split
+   "s" #'+evil*window-vsplit)
 
  ;; ivy
  (:after ivy
