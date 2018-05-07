@@ -127,5 +127,6 @@
 
        :private-ui
        neutral-title-bar
-       page-break-line)
+       ;; page-break-line
+       )
 
