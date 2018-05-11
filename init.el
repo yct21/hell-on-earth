@@ -121,6 +121,7 @@
         +org-projectile
         +org-journal)
        elisp
+       groovy
 
        :private-tools
        ranger
