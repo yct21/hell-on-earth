@@ -70,6 +70,7 @@
      :desc "Kill buffer" :n "d" #'kill-this-buffer
      :desc "Kill other buffers" :n "D" #'doom/kill-other-buffers
      :desc "Scratch buffer" :n "s" #'doom/open-scratch-buffer
+     :desc "Revert buffer" :n "r" #'revert-buffer
      :desc "Message buffer" :n "m" (lambda! (switch-to-buffer "*Messages*")))
 
    (:desc "file" :prefix "f"
