@@ -42,7 +42,7 @@
 
  ;; -------<leader>-------
  (:leader
-   (:desc "Previous buffer" :n "TAB" #'previous-buffer)
+   (:desc "Other buffer" :n "TAB" #'projectile-project-buffers-other-buffer)
    (:desc "Switch workspace buffer" :n "SPC" #'+ivy/switch-workspace-buffer)
 
    (:desc "search" :prefix "s"
