@@ -6,6 +6,9 @@
  ;; company
  :ni "M-i" #'+company/complete
 
+ ;; workspace
+ :n "M-1" #'+workspace/switch-to
+
  ;; evil commands
  ;; TODO: Put it into another module
  :ne "M-d" #'evil-scroll-down
