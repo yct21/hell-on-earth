@@ -3,6 +3,12 @@
 (when (featurep! +keybindings) (load! +keybindings))
 (when (featurep! +mru-workspace) (load! +mru-workspace))
 
+(after! ivy
+  (define-key ivy-minibuffer-map (kbd "M-l") #'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "RET") #'ivy-alt-done)
+  (define-key ivy-minibuffer-map (kbd "M-h") #'ivy-backward-delete-char)
+  (define-key ivy-minibuffer-map (kbd "M-RET") #'ivy-immediate-done))
+
 (after! avy
   (setq avy-all-windows 'all-frames))
 
@@ -24,8 +30,6 @@
 (setq-default frame-title-format
               '("欢迎回来，指挥官   |   "
                 (:eval (+workspace-list-names-limited))))
-
-(setq-default evil-shift-width 2)
 
 (after! typescript-mode
   (setq typescript-indent-level 2))

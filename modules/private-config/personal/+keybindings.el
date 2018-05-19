@@ -5,6 +5,7 @@
 (map!
  ;; company
  :ni "M-i" #'+company/complete
+ :ni "M-j" #'hippie-expand
 
  ;; workspace
  :n "M-1" #'+workspace/switch-to
@@ -53,6 +54,7 @@
      :desc "Directory" :nv "d" (λ! (+ivy/project-search t))
      :desc "Buffer" :nv "b" #'swiper
      :desc "Symbols" :nv "i" #'imenu
+     :desc "Resume Ivy" :nv "r" #'ivy-resume
      :desc "Symbols across buffers" :nv "I" #'imenu-anywhere
      :desc "Online providers" :nv "o" #'+lookup/online-select)
 

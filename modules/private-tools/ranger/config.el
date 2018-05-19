@@ -3,4 +3,5 @@
 (def-package! ranger
   :config
   (ranger-override-dired-mode t)
+  (setq ranger-cleanup-eagerly t)
   )
