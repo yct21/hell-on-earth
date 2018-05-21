@@ -19,8 +19,8 @@
 (setq x-super-keysym 'alt
       x-alt-keysym   'meta
 
-      user-mail-address "henrik@lissner.net"
-      user-full-name    "Henrik Lissner"
+      user-mail-address "yct21@12tcy.com"
+      user-full-name    "Chutian Yang"
 
       +org-dir (expand-file-name "~/orlog/")
       org-ellipsis " ▼ "
