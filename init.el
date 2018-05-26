@@ -113,5 +113,6 @@
 
        :private-feature
        evil
+       insert-chrome-url
        )
 
