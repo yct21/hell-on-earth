@@ -110,5 +110,8 @@
        :private-ui
        neutral-title-bar
        ;; page-break-line
+
+       :private-feature
+       evil
        )
 
