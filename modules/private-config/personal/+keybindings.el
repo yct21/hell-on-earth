@@ -16,6 +16,11 @@
  :ne "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
+ ;; evil-surround
+ :v  "t"  #'evil-surround-region
+ :o  "t"  #'evil-surround-edit
+ :o  "T"  #'evil-Surround-edit
+
  (:map evil-window-map
    "d" #'+workspace/close-window-or-workspace
    "D" #'ace-delete-window
