@@ -9,8 +9,8 @@
   (define-key ivy-minibuffer-map (kbd "M-h") #'ivy-backward-delete-char)
   (define-key ivy-minibuffer-map (kbd "M-RET") #'ivy-immediate-done))
 
-(after! avy
-  (setq avy-all-windows 'all-frames))
+;; (after! avy
+;;   (setq avy-all-windows 'all-frames))
 
 (defun +workspace-list-names-limited ()
   (let* ((names (+workspace-list-names))
