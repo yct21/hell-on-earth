@@ -1,11 +1,11 @@
 ;;;###autoload
-(defun +insert-chrome-url/insert-chrome-current-tab-url()
+(defun +insert-chrome-url/insert-chrome-current-tab-url ()
   "Get the URL of the active tab of the first window"
   (interactive)
   (insert (+insert-chrome-url/retrieve-chrome-current-tab-url)))
 
 ;;;###autoload
-(defun +insert-chrome-url/retrieve-chrome-current-tab-url()
+(defun +insert-chrome-url/retrieve-chrome-current-tab-url ()
   "Get the URL of the active tab of the first window"
   (interactive)
   (let ((result (do-applescript
@@ -20,3 +20,11 @@
                   "copy theResult to the end of links\n"
                   "return links as string\n"))))
     (format "%s" (s-chop-suffix "\"" (s-chop-prefix "\"" result)))))
+
+;;;###autoload
+(defun +insert-chrome-url/insert-chrome-current-tab-url-in-org (link-description)
+  "Insert current chrome tab url in org mode"
+  (interactive "sLink description: ")
+  (insert (format "[[%s][%s]]"
+                  (+insert-chrome-url/retrieve-chrome-current-tab-url)
+                  link-description)))

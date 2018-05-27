@@ -12,6 +12,10 @@
 
 (map!
  (:map org-mode-map
-  :localleader
+   :localleader
    (:desc "Insert element" :prefix "i"
-     :desc "Insert drawer" :n "d" #'org-insert-drawer)))
+     :desc "Insert drawer" :n "d" #'org-insert-drawer
+     (:when (featurep! :private-feature insert-chrome-url)
+       :desc "Insert link" :n "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org)
+     )
+   ))
