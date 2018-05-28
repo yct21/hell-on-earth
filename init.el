@@ -106,6 +106,7 @@
 
        :private-tools
        ranger
+       wakatime
 
        :private-ui
        neutral-title-bar
