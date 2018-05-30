@@ -8,7 +8,8 @@
  :ni "M-j" #'hippie-expand
 
  ;; workspace
- :n "M-1" #'+workspace/switch-to
+ :n "M-1" (lambda! (persp-switch "orlog"))
+ :n "M-`" (lambda! (persp-switch "main"))
 
  ;; evil commands
  ;; TODO: Put it into another module
