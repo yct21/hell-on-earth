@@ -19,3 +19,6 @@
        :desc "Insert link" :n "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org)
      )
    ))
+
+(after! org
+  (setq org-bullets-bullet-list '("○" "✸" "✿" "~")))

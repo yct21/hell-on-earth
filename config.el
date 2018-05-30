@@ -56,5 +56,4 @@
 (add-hook 'org-mode-hook #'auto-fill-mode)
 ;; The standard unicode characters are usually misaligned depending on the font.
 ;; This bugs me. Personally, markdown #-marks for headlines are more elegant.
-(setq org-bullets-bullet-list '("#"))
 
