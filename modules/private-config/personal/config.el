@@ -1,7 +1,7 @@
 ;;; private/personal/config.el -*- lexical-binding: t; -*-
 
-(when (featurep! +keybindings) (load! +keybindings))
-(when (featurep! +mru-workspace) (load! +mru-workspace))
+(when (featurep! +keybindings) (load! "+keybindings"))
+(when (featurep! +mru-workspace) (load! "+mru-workspace"))
 
 (after! ivy
   (define-key ivy-minibuffer-map (kbd "M-l") #'ivy-alt-done)

@@ -5,10 +5,10 @@
     :config
     (org-projectile-per-project)
     (setq org-projectile-per-project-filepath "TODOs.org"))
-  (load! +org-projectile))
+  (load! "+org-projectile"))
 
 (when (featurep! +org-journal)
-  (load! +org-journal))
+  (load! "+org-journal"))
 
 (map!
  (:map org-mode-map
