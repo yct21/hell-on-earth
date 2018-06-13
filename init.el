@@ -119,6 +119,7 @@
        :private-tools
        ranger
        wakatime
+       git
 
        :private-ui
        neutral-title-bar
