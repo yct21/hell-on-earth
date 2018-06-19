@@ -8,7 +8,7 @@
  :ni "M-j" #'hippie-expand
 
  ;; workspace
- :n "M-1" (lambda! (persp-switch "orlog"))
+ :n "M-1" (lambda! (persp-switch "gtd"))
  :n "M-`" (lambda! (persp-switch "main"))
 
  ;; evil commands
@@ -32,7 +32,7 @@
  (:after ivy
    :map ivy-minibuffer-map
    [escape] #'keyboard-escape-quit
-   "TAB" #'ivy-call-and-recenter
+   [tab] #'ivy-call-and-recenter
    "M-z" #'undo
    "M-v" #'yank
    "C-v" #'yank
@@ -52,7 +52,7 @@
 
  ;; -------<leader>-------
  (:leader
-   (:desc "Other buffer" :n "TAB" #'projectile-project-buffers-other-buffer)
+   (:desc "Other buffer" :n [tab] #'projectile-project-buffers-other-buffer)
    (:desc "Switch workspace buffer" :n "SPC" #'+ivy/switch-workspace-buffer)
 
    (:desc "search" :prefix "s"
