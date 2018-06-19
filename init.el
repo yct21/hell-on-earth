@@ -76,7 +76,9 @@
        unicode
 
        :emacs
-       electric-indent
+       electric
+       dired
+       imenu
 
        :tools
        editorconfig
@@ -117,7 +119,7 @@
        groovy
 
        :private-tools
-       ranger
+       ;; ranger
        wakatime
        git
 
