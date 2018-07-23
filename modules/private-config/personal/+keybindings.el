@@ -1,6 +1,6 @@
 ;;; private/personal/+keybindings.el -*- lexical-binding: t; -*-
 
-;; General keybindings that modifies doom default bindings
+;;; General keybindings that modifies doom default bindings
 
 (map!
  ;; company
@@ -13,8 +13,8 @@
 
  ;; evil commands
  ;; TODO: Put it into another module
- :ne "M-d" #'evil-scroll-down
- :ne "M-u" #'evil-scroll-up
+ :nve "M-d" #'evil-scroll-down
+ :nve "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
  ;; evil-surround
