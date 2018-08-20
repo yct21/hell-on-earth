@@ -5,5 +5,5 @@
   :init
   (map! :leader :n "oj" #'org-journal-new-entry)
   :config
-  (setq org-journal-dir "~/stf")
+  (setq org-journal-dir "~/orlog/stf")
   (setq org-journal-carryover-items nil))
