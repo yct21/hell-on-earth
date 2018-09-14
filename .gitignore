@@ -3,4 +3,4 @@
 *.log
 tmp/
 
-autoload/private.el
+config.el
