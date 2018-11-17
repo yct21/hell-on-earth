@@ -50,7 +50,7 @@
       +org-dir (expand-file-name "~/orlog/")
       org-ellipsis " ▼ "
 
-      ;; doom-variable-pitch-font (font-spec :family "Fira Sans")
+      ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
       ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
       doom-big-font (font-spec :family "Fira Mono" :size 19))
 
@@ -69,7 +69,7 @@
    (setq ivy-posframe-font (font-spec :family "Source Code Pro" :size 16)
          ivy-height 12))
   (_
-   (setq doom-font (font-spec :family "Source Code Pro" :size 16 :weight 'semi-light))))
+   (setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light))))
 
 (modify-frame-parameters nil '((inhibit-double-buffering . t)))
 (toggle-frame-maximized)
@@ -98,3 +98,17 @@
 (setq url-proxy-services
    '(("http"     . "10.144.1.10:8080")
        ("https"    . "10.144.1.10:8080")))
+
+(after! hide-show
+  (setq hs-special-modes-alist
+        (append
+         '((web-mode "// **" "// End region" "/[*/]" nil nil))
+         hs-special-modes-alist)))
+
+(after! projectile
+  (setq projectile-enable-caching nil)
+  )
+
+(after! tide
+  (setq tide-tsserver-executable "node_modules/typescript/bin/tsserver")
+  )

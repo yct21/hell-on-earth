@@ -27,12 +27,14 @@
        window-select
        unicode
        vc-gutter
+       (pretty-code +fira)
 
        :emacs
        electric
        dired
        imenu
        vc
+       hideshow
 
        :editor
        rotate-text
@@ -78,9 +80,10 @@
        ;; ranger
        wakatime
        git
+       habitica
 
        :private-ui
-       neutral-title-bar
+       ;; neutral-title-bar
        ;; page-break-line
 
        :private-feature

@@ -17,11 +17,6 @@
  :nve "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
- ;; evil-surround
- :v  "t"  #'evil-surround-region
- :o  "t"  #'evil-surround-edit
- :o  "T"  #'evil-Surround-edit
-
  (:map evil-window-map
    "d" #'+workspace/close-window-or-workspace
    "D" #'ace-delete-window
@@ -47,8 +42,13 @@
    "C-f" #'forward-word)
 
  (:after avy
-   :nv "s" #'avy-goto-char
-   :nv "S" #'avy-goto-line)
+   :nv "f" #'avy-goto-char
+   :nv "F" #'avy-goto-line)
+
+ ;; evil-surround
+ :v  "s"  #'evil-surround-region
+ :o  "s"  #'evil-surround-edit
+ :o  "S"  #'evil-Surround-edit
 
  ;; -------<leader>-------
  (:leader

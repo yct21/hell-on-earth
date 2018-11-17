@@ -3,3 +3,4 @@
 
 (package! fcitx)
 (package! ace-pinyin)
+(package! cnfonts)

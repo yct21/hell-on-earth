@@ -1,0 +1,6 @@
+;;; ~/code/emacs/hell-on-earth/autoload/private.example.el -*- lexical-binding: t; -*-
+
+(after! emacs-habitica
+  (setq habitica-uid "your habitca uid")
+  (setq habitica-token "your habitica token")
+  )

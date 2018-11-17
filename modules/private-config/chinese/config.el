@@ -9,3 +9,8 @@
   (progn
     (setq ace-pinyin-use-avy t)
     (ace-pinyin-global-mode t)))
+
+(def-package! cnfonts
+  :config
+  (progn
+    (cnfonts-enable)))
