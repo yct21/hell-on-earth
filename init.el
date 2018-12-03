@@ -59,6 +59,7 @@
        sh
        web
        lua
+       rust
 
        :config
        (default +bindings +snippets +evil-commands)
