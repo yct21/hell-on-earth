@@ -80,7 +80,6 @@
        ;; ranger
        wakatime
        git
-       habitica
 
        :private-ui
        ;; neutral-title-bar
