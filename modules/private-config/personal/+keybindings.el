@@ -9,7 +9,7 @@
 
  ;; workspace
  :n "M-1" (lambda! (persp-switch "gtd"))
- :n "M-`" (lambda! (persp-switch "main"))
+ :n "M-`" (lambda! (persp-switch "others"))
 
  ;; evil commands
  ;; TODO: Put it into another module

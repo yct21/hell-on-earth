@@ -46,3 +46,5 @@
    '(("no_proxy" . "^\\(localhost\\|10\\..*\\|192\\.168\\..*\\)")
      ("http" . "http://10.144.1.10:8080")
      ("https" . "http://10.144.1.10:8080")))
+
+(setq doom-theme 'doom-city-lights)

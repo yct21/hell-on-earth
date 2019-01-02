@@ -112,3 +112,20 @@
 (after! tide
   (setq tide-tsserver-executable "node_modules/typescript/bin/tsserver")
   )
+
+(setq +workspaces-main "others")
+
+(setq insert-directory-program "/usr/local/bin/gls")
+(setq dired-listing-switches "-aBhl --group-directories-first")
+
+(after! web-mode
+  (define-key web-mode-map (kbd "M-k") #'typescript-mode)
+  )
+
+(after! typescript-mode
+  (define-key typescript-mode-map (kbd "M-k") #'web-mode)
+  )
+
+(after! projectile
+  (add-to-list 'projectile-globally-ignored-files ".projectile")
+  )
