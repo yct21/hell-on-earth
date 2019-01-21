@@ -51,7 +51,7 @@
        emacs-lisp
        ess
        javascript
-       markdown
+       (markdown +pandoc)
        (org +attach +babel +capture +export +present)
        plantuml
        ruby
@@ -81,6 +81,7 @@
        ;; ranger
        wakatime
        git
+       hexo
 
        :private-ui
        ;; neutral-title-bar
@@ -88,5 +89,6 @@
 
        :private-feature
        evil
+       insert-screenshot
        insert-chrome-url)
 
