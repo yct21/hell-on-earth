@@ -82,6 +82,7 @@
        wakatime
        git
        hexo
+       jira
 
        :private-ui
        ;; neutral-title-bar
