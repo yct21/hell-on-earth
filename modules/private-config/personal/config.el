@@ -128,4 +128,6 @@
 
 (after! projectile
   (add-to-list 'projectile-globally-ignored-files ".projectile")
-  )
+
+
+(setq mac-command-modifier 'meta)

@@ -3,6 +3,13 @@
 ;;; General keybindings that modifies doom default bindings
 
 (map!
+ ;; mac bindings
+  "M-z" #'undo
+  "M-c" #'evil-yank
+  "M-v" #'yank
+  "M-w" #'delete-window
+  "M-s" #'save-buffer
+
  ;; company
  :ni "M-i" #'+company/complete
  :ni "M-j" #'hippie-expand
