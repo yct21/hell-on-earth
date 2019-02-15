@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :feature
-       debugger
+       ;;debugger
        eval
        (evil +everywhere)
        file-templates
@@ -19,25 +19,27 @@
        (popup +all +defaults)
        doom
        doom-dashboard
-       doom-modeline
+       modeline
        hl-todo
        nav-flash
        evil-goggles
        vi-tilde-fringe
        window-select
-       unicode
        vc-gutter
        (pretty-code +fira)
 
        :emacs
        electric
-       dired
+       (dired +ranger)
+       ediff
        imenu
        vc
        hideshow
 
        :editor
+       ;; format
        rotate-text
+       multiple-cursors
 
        :tools
        editorconfig
@@ -62,7 +64,7 @@
        rust
 
        :config
-       (default +bindings +snippets +evil-commands)
+       (default +bindings +evil-commands +smartparens)
 
        :private-config
        (personal
@@ -76,6 +78,7 @@
         +org-journal)
        elisp
        groovy
+       typescript
 
        :private-tools
        ;; ranger
