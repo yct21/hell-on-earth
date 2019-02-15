@@ -24,7 +24,18 @@
  :nve "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
+ ;; org agenda list
+ :ne "C-`" (lambda! (org-agenda nil "t"))
+
+ (:map org-agenda-mode-map
+   "j" #'evil-next-line
+   "k" #'evil-previous-line
+   "M-d" #'evil-scroll-down
+   "M-u" #'evil-scroll-up)
+
  (:map evil-window-map
+   "M-d" #'evil-scroll-down
+   "M-u" #'evil-scroll-up
    "d" #'+workspace/close-window-or-workspace
    "D" #'ace-delete-window
    "S" #'+evil*window-split

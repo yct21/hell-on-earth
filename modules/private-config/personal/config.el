@@ -28,7 +28,7 @@
      " ")))
 
 (setq-default frame-title-format
-              '("欢迎回来，指挥官   |   "
+              '("欢迎回来，指挥官  |   "
                 (:eval (+workspace-list-names-limited))))
 
 (after! typescript-mode
@@ -47,7 +47,7 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      +org-dir (expand-file-name "~/orlog/")
+      +org-dir (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/gtd")
       org-ellipsis " ▼ "
 
       ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
@@ -128,6 +128,10 @@
 
 (after! projectile
   (add-to-list 'projectile-globally-ignored-files ".projectile")
-
+)
 
 (setq mac-command-modifier 'meta)
+
+;;(after! electric (electric-pair-mode))
+
+(setq max-mini-window-height 0.7)

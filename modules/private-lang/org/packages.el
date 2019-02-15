@@ -8,3 +8,6 @@
   (package! org-journal))
 ;; (when (featurep! +org-wiki)
 ;;   (package! org-wiki))
+
+(package! org-super-agenda)
+(package! org-alert)
