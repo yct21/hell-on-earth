@@ -26,20 +26,20 @@
        vi-tilde-fringe
        window-select
        vc-gutter
+       unicode
        (pretty-code +fira)
 
        :emacs
        electric
        (dired +ranger)
-       ediff
        imenu
        vc
-       hideshow
 
        :editor
        ;; format
        rotate-text
        multiple-cursors
+       fold
 
        :tools
        editorconfig

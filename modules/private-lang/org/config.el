@@ -57,4 +57,4 @@
 
 (def-package! org-alert
   :config
-  (setq alert-default-style 'osx-notifier))
+  (setq alert-default-style 'notifier))
