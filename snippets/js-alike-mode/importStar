@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: import-star
-# key: imp*
+# key: im*-
 # --
 import * as $2 from '$1'
