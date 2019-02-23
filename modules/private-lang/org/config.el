@@ -27,6 +27,8 @@
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
+  (setq +org-capture-todo-file "quick-notes.org"
+        +org-capture-notes-file "quick-notes.org")
   (add-to-list 'org-modules 'habits))
 
 (def-package! org-super-agenda
