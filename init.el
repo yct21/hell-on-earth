@@ -7,8 +7,6 @@
        file-templates
        (lookup +devdocs +docsets)
        snippets
-       spellcheck
-       (syntax-checker +childframe)
        workspaces
 
        :completion
@@ -44,6 +42,8 @@
        :tools
        editorconfig
        magit
+       (flycheck +childframe)
+       lsp
 
        :lang
        cc
@@ -61,7 +61,7 @@
        sh
        web
        lua
-       rust
+       (rust +lsp)
 
        :config
        (default +bindings +evil-commands +smartparens)
@@ -79,6 +79,7 @@
        elisp
        groovy
        typescript
+       cucumber
 
        :private-tools
        ;; ranger
