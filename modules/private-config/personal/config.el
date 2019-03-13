@@ -47,7 +47,7 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      +org-dir (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/gtd")
+      org-directory (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/gtd")
       org-ellipsis " ▼ "
 
       ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
