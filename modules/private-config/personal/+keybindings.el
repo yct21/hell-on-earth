@@ -16,7 +16,6 @@
 
  ;; workspace
  :n "M-1" (lambda! (persp-switch "gtd"))
- :n "M-`" (lambda! (persp-switch "others"))
 
  ;; evil commands
  ;; TODO: Put it into another module
@@ -24,14 +23,15 @@
  :nve "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
 
- ;; org agenda list
+ ;; org gtd
  :ne "C-`" (lambda! (org-agenda nil "t"))
+ :ne "M-`" (lambda! (org-capture nil "t"))
 
  (:map org-agenda-mode-map
    "j" #'evil-next-line
    "k" #'evil-previous-line
    "M-d" #'evil-scroll-down
-   "M-u" #'evil-scroll-up)
+   "M-u" #'evil-scroll-up )
 
  (:map evil-window-map
    "M-d" #'evil-scroll-down
@@ -110,6 +110,7 @@
      :desc "Open project editorconfig" :n "c" #'editorconfig-find-current-editorconfig
      :desc "Find directory" :n "d" #'dired
      :desc "Save file" :n "s" #'save-buffer
+     :desc "Save some files" :n "S" #'save-some-buffers
      :desc "Find file in emacs.d" :n "e" #'+default/find-in-emacsd
      :desc "Browse emacs.d" :n "E" #'+default/browse-emacsd
      :desc "Recent files" :n "r" #'recentf-open-files
@@ -137,6 +138,8 @@
      :desc "Git stage hunk" :n "U" #'magit-unstage-file
      :desc "Next hunk" :nv "]" #'git-gutter:next-hunk
      :desc "Previous hunk" :nv "[" #'git-gutter:previous-hunk)
+
+   (:desc "switch project" :n "P" (lambda! (projectile-switch-project "D")))
 
    (:desc "project" :prefix "p"
      :desc "Browse project" :n "." #'+default/browse-project
