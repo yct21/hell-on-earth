@@ -13,6 +13,8 @@
 (map!
  (:map org-mode-map
    :localleader
+   (:desc "Set priority" :n "p" #'org-priority)
+   (:desc "Refile" :n "r" #'org-refile)
    (:desc "Insert element" :prefix "i"
      :desc "Insert drawer" :n "d" #'org-insert-drawer
      (:when (featurep! :private-feature insert-chrome-url)
@@ -27,9 +29,10 @@
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
-  (setq +org-capture-todo-file "quick-notes.org"
-        +org-capture-notes-file "quick-notes.org")
-  (add-to-list 'org-modules 'habits))
+  (setq +org-capture-todo-file "~/orlog/gtd/quick-notes.org"
+        +org-capture-notes-file "~/orlog/gtd/quick-notes.org")
+  (add-to-list 'org-modules 'habits)
+  )
 
 (def-package! org-super-agenda
   :config
