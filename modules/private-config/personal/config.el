@@ -135,3 +135,5 @@
 ;;(after! electric (electric-pair-mode))
 
 (setq max-mini-window-height 0.7)
+
+(setq projectile-project-search-path '("~/code/hub" "~/code/side-projects" "~/code/nokia" "~/code/playgrounds"))
