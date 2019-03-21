@@ -95,9 +95,9 @@
           ("org-cn"   . "http://elpa.emacs-china.org/org/")
           ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
-(setq url-proxy-services
-   '(("http"     . "10.144.1.10:8080")
-       ("https"    . "10.144.1.10:8080")))
+;; (setq url-proxy-services
+;;    '(("http"     . "10.144.1.10:8080")
+;;        ("https"    . "10.144.1.10:8080")))
 
 (after! hide-show
   (setq hs-special-modes-alist
@@ -136,4 +136,4 @@
 
 (setq max-mini-window-height 0.7)
 
-(setq projectile-project-search-path '("~/code/hub" "~/code/side-projects" "~/code/nokia" "~/code/playgrounds"))
+(setq projectile-project-search-path '("~/code/hub" "~/code/side-projects" "~/code/nokia" "~/code/playgrounds" "~/code/utils"))
