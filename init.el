@@ -57,6 +57,7 @@
        (org +attach +babel +capture +export +present)
        plantuml
        ruby
+       rest
        swift
        rest
        sh
