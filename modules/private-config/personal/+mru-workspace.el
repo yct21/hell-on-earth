@@ -1,5 +1,7 @@
 ;;; private-config/personal/+mru-workspace.el -*- lexical-binding: t; -*-
 
+(setq +workspaces-switch-project-function #'ignore)
+
 (after! persp-mode
   (add-hook 'persp-before-switch-functions
             #'(lambda (new-persp-name w-or-f)

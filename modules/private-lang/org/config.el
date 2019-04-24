@@ -31,7 +31,6 @@
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
   (setq +org-capture-todo-file "~/orlog/gtd/quick-notes.org"
         +org-capture-notes-file "~/orlog/gtd/quick-notes.org")
-  (add-to-list 'org-modules 'habits)
   )
 
 (def-package! org-super-agenda

@@ -5,7 +5,7 @@
        eval
        (evil +everywhere)
        file-templates
-       (lookup +devdocs +docsets)
+       (lookup +docsets)
        snippets
        workspaces
 
@@ -20,7 +20,7 @@
        modeline
        hl-todo
        nav-flash
-       evil-goggles
+       ophints           ; highlight the region an operation acts on
        vi-tilde-fringe
        window-select
        vc-gutter
@@ -41,6 +41,7 @@
 
        :tools
        editorconfig
+       docker
        magit
        (flycheck +childframe)
        lsp
@@ -54,7 +55,7 @@
        ess
        javascript
        (markdown +pandoc)
-       (org +attach +babel +capture +export +present)
+       (org +habit +attach +babel +capture +export +present)
        plantuml
        ruby
        rest
@@ -89,6 +90,7 @@
        git
        hexo
        jira
+       vlf
 
        :private-ui
        ;; neutral-title-bar

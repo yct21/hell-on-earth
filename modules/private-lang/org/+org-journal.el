@@ -10,6 +10,7 @@
   (setq org-journal-find-file (lambda (filename)
                                 (let ((buffer (find-file-noselect filename)))
                                   (display-buffer buffer)
+                                  (org-journal-mode)
                                   )
                                 ))
   (setq org-journal-carryover-items nil))

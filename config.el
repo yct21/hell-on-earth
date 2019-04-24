@@ -37,4 +37,4 @@
 ;;; make title bar autoloaded
 (ns-auto-titlebar-mode)
 
-(setq doom-theme 'doom-challenger-deep)
+(setq doom-theme 'doom-city-lights)

@@ -80,7 +80,7 @@
      :desc "Symbols" :nv "i" #'imenu
      :desc "Resume Ivy" :nv "r" #'ivy-resume
      :desc "Symbols across buffers" :nv "I" #'imenu-anywhere
-     :desc "Online providers" :nv "o" #'+lookup/online-select)
+     :desc "occur" :nv "o" #'vlf-occur)
 
    (:desc "workspace" :prefix "l"
      :desc "New workspace" :n "n" #'+workspace/new

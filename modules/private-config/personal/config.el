@@ -28,8 +28,9 @@
      " ")))
 
 (setq-default frame-title-format
-              '("欢迎回来，指挥官  |   "
-                (:eval (+workspace-list-names-limited))))
+              '("Valar morghulis.  |  "
+                (:eval (+workspace-list-names-limited))
+                ))
 
 (after! typescript-mode
   (setq typescript-indent-level 2))
@@ -72,7 +73,6 @@
    (setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light))))
 
 (modify-frame-parameters nil '((inhibit-double-buffering . t)))
-(toggle-frame-maximized)
 
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 ;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
@@ -136,4 +136,4 @@
 
 (setq max-mini-window-height 0.7)
 
-(setq projectile-project-search-path '("~/code/hub" "~/code/side-projects" "~/code/nokia" "~/code/playgrounds" "~/code/utils"))
+(setq projectile-project-search-path '("~/code/hub" "~/code/side-projects" "~/code/nokia" "~/code/nokia/pr-analysis" "~/code/playgrounds" "~/code/utils"))
