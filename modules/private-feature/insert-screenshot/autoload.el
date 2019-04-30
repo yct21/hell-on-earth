@@ -1,6 +1,7 @@
 ;;; private-feature/insert-screenshot/autoload.el -*- lexical-binding: t; -*-
 ;; pirated from zilongshanren
 
+;;;###autodef
 (defun hoe/capture-screenshot (basename)
   "Take a screenshot into a time stamped unique-named file in the
   same directory as the org-buffer/markdown-buffer and insert a link to this file."
@@ -32,6 +33,7 @@
       (hoe//insert-org-or-md-img-link "./" (concat basename ".png"))))
   (insert "\n"))
 
+;;;###autodef
 (defun hoe//insert-org-or-md-img-link (prefix imagename)
   (if (equal (file-name-extension (buffer-file-name)) "org")
       (insert (format "[[%s%s]]" prefix imagename))

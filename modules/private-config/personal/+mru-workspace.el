@@ -1,6 +1,7 @@
 ;;; private-config/personal/+mru-workspace.el -*- lexical-binding: t; -*-
 
 (setq +workspaces-switch-project-function #'ignore)
+(setq +workspaces-on-switch-project-behavior t)
 
 (after! persp-mode
   (add-hook 'persp-before-switch-functions
@@ -40,3 +41,16 @@
                          (cons
                           (safe-persp-name persp)
                           (cdr persp-names-cache))))))))
+
+(defvar hoe/custom-project-list
+  '("friday/client"
+    "friday/server"
+    ))
+
+(defun hoe/projectile-project-name (project-root)
+  "Function to create project name"
+  (message "%s" project-root)
+  (let ((custom-project-name (-find #'(lambda (str) (string-match str project-root)) hoe/custom-project-list)))
+    (or custom-project-name (projectile-default-project-name project-root))))
+
+(setq projectile-project-name-function 'hoe/projectile-project-name)
