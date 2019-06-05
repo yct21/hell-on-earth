@@ -143,4 +143,5 @@
         "~/code/nokia"
         "~/code/nokia/pr-analysis"
         "~/code/playgrounds"
+        "~/code/personal"
         "~/code/utils"))

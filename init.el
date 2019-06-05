@@ -1,49 +1,45 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-(doom! :feature
-       ;;debugger
-       eval
-       (evil +everywhere)
-       file-templates
-       (lookup +docsets)
-       snippets
-       workspaces
-
-       :completion
+(doom! :completion
        (company +childframe +auto)
        (ivy +childframe)
 
        :ui
-       (popup +all +defaults)
        doom
        doom-dashboard
-       modeline
+       doom-quit
        hl-todo
+       modeline
        nav-flash
        ophints           ; highlight the region an operation acts on
+       (popup +all +defaults)
+       (pretty-code +fira)
+       vc-gutter
        vi-tilde-fringe
        window-select
-       vc-gutter
        unicode
-       (pretty-code +fira)
-
-       :emacs
-       electric
-       (dired +ranger)
-       imenu
-       vc
+       workspaces
 
        :editor
-       ;; format
-       rotate-text
-       multiple-cursors
+       (evil +everywhere)
+       file-templates
        fold
+       format
+       snippets
+       rotate-text
+
+       :emacs
+       (dired +ranger +icons)
+       electric
+       vc
 
        :tools
+       eval
        editorconfig
        docker
-       magit
        (flycheck +childframe)
+       (lookup +docsets)
+       magit
        lsp
 
        :lang
@@ -53,9 +49,17 @@
        elm
        emacs-lisp
        ess
+       go
        javascript
        (markdown +pandoc)
-       (org +habit +attach +babel +capture +export +present)
+       (org
+        +habit
+        +attach
+        +babel
+        +capture
+        +export
+        +present
+        +protocal)
        plantuml
        ruby
        rest
@@ -79,8 +83,10 @@
        (org
         +org-projectile
         +org-journal)
+       rust
        elisp
        groovy
+       reasonml
        typescript
        cucumber
 

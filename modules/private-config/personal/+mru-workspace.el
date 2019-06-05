@@ -43,7 +43,7 @@
                           (cdr persp-names-cache))))))))
 
 (defvar hoe/custom-project-list
-  '("friday/client"
+  '(
     "friday/server"
     ))
 

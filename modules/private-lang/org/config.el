@@ -15,8 +15,7 @@
    :localleader
    (:desc "Set priority" :n "p" #'org-priority)
    (:desc "Refile" :n "r" #'org-refile)
-   (:desc "Insert element" :prefix "i"
-     :desc "Insert drawer" :n "d" #'org-insert-drawer
+   (:prefix "o"
      (:when (featurep! :private-feature insert-chrome-url)
        :desc "Insert link" :n "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org))))
 

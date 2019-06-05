@@ -1,0 +1,8 @@
+;;; private-lang/reasonml/config.el -*- lexical-binding: t; -*-
+
+(def-package! reason-mode)
+
+(lsp-register-client
+   (make-lsp-client :new-connection (lsp-stdio-connection "/Users/yct21/code/emacs/reason-language-server.exe")
+                    :major-modes '(reason-mode)
+                    :server-id 'ocaml-ls))

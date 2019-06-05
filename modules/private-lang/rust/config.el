@@ -73,14 +73,15 @@
   (let ((data (-> p (ht-get "arguments") (seq-first))))
     (rust-analyzer--apply-source-change data)))
 
-(lsp-register-client
- (make-lsp-client
-  :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
-  :notification-handlers (ht<-alist rust-analyzer--notification-handlers)
-  :action-handlers (ht<-alist rust-analyzer--action-handlers)
-  :major-modes '(rust-mode)
-  :ignore-messages nil
-  :server-id 'rust-analyzer))
+(after! lsp-mode
+  (lsp-register-client
+   (make-lsp-client
+    :new-connection (lsp-stdio-connection (lambda () rust-analyzer-command))
+    :notification-handlers (ht<-alist rust-analyzer--notification-handlers)
+    :action-handlers (ht<-alist rust-analyzer--action-handlers)
+    :major-modes '(rust-mode)
+    :ignore-messages nil
+    :server-id 'rust-analyzer)))
 
 (with-eval-after-load 'company-lsp
   ;; company-lsp provides a snippet handler for rust by default that adds () after function calls, which RA does better
