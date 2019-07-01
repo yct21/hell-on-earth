@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: elixir-module-document
+# key: mdoc
+# --
+
+@moduledoc """
+  $0
+"""

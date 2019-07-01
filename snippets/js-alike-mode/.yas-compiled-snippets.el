@@ -8,4 +8,4 @@
                        ("//-" "// ** $1\n// ------------------------------------------------------------------------------\n" "code region" nil nil nil "/Users/yct21/.config/doom/snippets/js-alike-mode/code-region" nil nil)))
 
 
-;;; Do not edit! File generated at Thu Jun 13 15:33:03 2019
+;;; Do not edit! File generated at Mon Jul  1 11:54:32 2019

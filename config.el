@@ -39,3 +39,6 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (setq doom-theme 'doom-city-lights)
+
+(setq default-frame-alist
+      (append default-frame-alist '((inhibit-double-buffering . t))))

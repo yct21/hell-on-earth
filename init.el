@@ -45,21 +45,13 @@
        :lang
        cc
        data
-       elixir
        elm
        emacs-lisp
        ess
        go
        javascript
        (markdown +pandoc)
-       (org
-        +habit
-        +attach
-        +babel
-        +capture
-        +export
-        +present
-        +protocal)
+       (org +gnuplot +pandoc +present)
        plantuml
        ruby
        rest
@@ -84,6 +76,7 @@
         +org-projectile
         +org-journal)
        rust
+       elixir
        elisp
        groovy
        reasonml
