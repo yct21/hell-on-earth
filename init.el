@@ -90,6 +90,7 @@
        hexo
        jira
        vlf
+       anywhere
 
        :private-ui
        ;; neutral-title-bar
