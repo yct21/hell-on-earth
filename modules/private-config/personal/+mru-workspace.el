@@ -45,6 +45,7 @@
 (defvar hoe/custom-project-list
   '(
     "funkenschlag/client"
+    "funkenschlag/server"
     ))
 
 (defun hoe/projectile-project-name (project-root)
