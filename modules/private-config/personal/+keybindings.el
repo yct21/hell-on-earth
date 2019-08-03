@@ -140,6 +140,8 @@
      :desc "Previous hunk" :nv "[" #'git-gutter:previous-hunk)
 
    (:desc "switch project" :n "P" (lambda! (projectile-switch-project "D")))
+   (:desc "open" :prefix "o"
+     :desc "Observatory" :n "o" #'hoe-observatory/create-post/body)
 
    (:desc "project" :prefix "p"
      :desc "Browse project" :n "." #'+default/browse-project
