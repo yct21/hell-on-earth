@@ -28,3 +28,11 @@
   (insert (format "[[%s][%s]]"
                   (+insert-chrome-url/retrieve-chrome-current-tab-url)
                   link-description)))
+
+;;;###autoload
+(defun +insert-chrome-url/insert-chrome-current-tab-url-in-md (link-description)
+  "Insert current chrome tab url in org mode"
+  (interactive "sLink description: ")
+  (insert (format "[%s](%s)"
+                  link-description
+                  (+insert-chrome-url/retrieve-chrome-current-tab-url))))
