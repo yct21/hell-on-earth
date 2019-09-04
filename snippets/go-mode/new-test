@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: new-test
+# key: ftest
+# --
+
+func Test_$1(t *testing.T) {
+	ast := assert.New(t)
+    $0
+}

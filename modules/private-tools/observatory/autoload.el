@@ -6,12 +6,13 @@
   Observatory create post:
   _b_:bliki
   _n_:note
-  _c_:cliping "
+  _c_:clipping "
   ("b" hoe-observatory/create-bliki)
   ("n" hoe-observatory/create-note)
-  ("c" hoe-observatory/create-cliping)
+  ("c" hoe-observatory/create-clipping)
   )
 
+;;;###autodef
 (defconst hoe-observatory//draft-template
   "
 ---
@@ -36,12 +37,12 @@ categories: %s
   )
 
 ;;;###autoload
-(defun hoe-observatory/create-cliping (title)
+(defun hoe-observatory/create-clipping (title)
   (interactive "sTitle: ")
-  (hoe-observatory/create-draft "cliping" title)
+  (hoe-observatory/create-draft "clipping" title)
   (insert "\n")
   (insert "Source: ")
-  (+insert-chrome-url/insert-chrome-current-tab-url-in-md)
+  (+insert-chrome-url/insert-chrome-current-tab-url-in-md title)
   )
 
 ;;;###autoload

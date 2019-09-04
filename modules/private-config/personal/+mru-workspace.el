@@ -42,10 +42,12 @@
                           (safe-persp-name persp)
                           (cdr persp-names-cache))))))))
 
-(defvar hoe/custom-project-list
+(defvar hoe/custom-project-list)
+(setq hoe/custom-project-list
   '(
     "funkenschlag/client"
     "funkenschlag/server"
+    "funkenschlag/arbiter"
     ))
 
 (defun hoe/projectile-project-name (project-root)
