@@ -28,7 +28,7 @@
      " ")))
 
 (setq-default frame-title-format
-              '("Valar morghulis.  |  "
+              '("Visual Studio Code  |  "
                 (:eval (+workspace-list-names-limited))
                 ))
 

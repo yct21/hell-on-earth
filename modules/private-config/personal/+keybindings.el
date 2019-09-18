@@ -12,7 +12,11 @@
 
  ;; company
  :ni "M-i" #'+company/complete
- :ni "M-j" #'hippie-expand
+ :i "C-j" #'newline-and-indent
+ ;; :ni "C-j" (lambda! (let ((posX (- (point) (line-beginning-position))))
+ ;;                      (insert "\n")
+ ;;                      (insert "\n")
+ ;;                      (forward-line)))
 
  ;; workspace
  :n "M-1" (lambda! (persp-switch "gtd"))
@@ -38,8 +42,8 @@
    "M-u" #'evil-scroll-up
    "d" #'+workspace/close-window-or-workspace
    "D" #'ace-delete-window
-   "S" #'+evil*window-split
-   "s" #'+evil*window-vsplit)
+   "S" #'+evil-window-split-a
+   "s" #'+evil-window-vsplit-a)
 
  ;; ivy
  (:after ivy
