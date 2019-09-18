@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       (company +childframe +auto)
+       ;; (company +auto)
        (ivy +childframe)
 
        :ui
@@ -92,6 +92,9 @@
        vlf
        anywhere
        observatory
+       leetcode
+       tabnine
+       frog-jump-buffer
 
        :private-ui
        ;; neutral-title-bar

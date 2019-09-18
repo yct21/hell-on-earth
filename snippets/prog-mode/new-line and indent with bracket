@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: new-line and indent with bracket
+# key: ;;
+# --
+{
+    $0
+}

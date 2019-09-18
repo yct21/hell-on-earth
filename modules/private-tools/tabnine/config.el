@@ -37,5 +37,4 @@
   ;;   [return]    nil
   ;;   "TAB"       #'company-complete-selection)
   ;; (add-to-list 'company-backends #'company-tabnine)
-
   )

@@ -12,7 +12,7 @@
                                   (org-journal-mode)
                                   )
                                 ))
-  (setq org-journal-carryover-items nil))
+  (setq org-journal-carryover-items ""))
 
 (set-popup-rule!
   ".*\\.stf$"

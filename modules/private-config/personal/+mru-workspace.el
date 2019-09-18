@@ -1,6 +1,12 @@
 ;;; private-config/personal/+mru-workspace.el -*- lexical-binding: t; -*-
 
-(setq +workspaces-switch-project-function #'ignore)
+(defun hoe/after-switch-project (dir)
+  (unless (> (length (persp-buffer-list)) 0)
+    (doom-project-find-file dir)
+    ))
+
+(setq +workspaces-switch-project-function #'hoe/after-switch-project)
+;; (setq +workspaces-switch-project-function #'ignore)
 (setq +workspaces-on-switch-project-behavior t)
 
 (after! persp-mode
