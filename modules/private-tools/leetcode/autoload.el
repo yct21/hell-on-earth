@@ -35,6 +35,21 @@ go 1.12
 ")
 
 ;;;###autodef
+(defconst hoe-leetcode//rust-template
+  "
+struct Solution;
+
+#[test]
+fn test1() {
+    assert_eq!(true, true);
+}
+
+impl Solution {
+
+}
+")
+
+;;;###autoload
 (defun hoe-leetcode/retrieve-chrome-current-tab-problem-title ()
   "Get the URL of the active tab of the first window"
   (let* ((raw-url (do-applescript
@@ -54,7 +69,7 @@ go 1.12
     (match-string 1 url)
     ))
 
-;;;###autodef
+;;;###autoload
 (defun hoe-leetcode/retrieve-chrome-current-tab-problem-id ()
   "Get the title of the active tab of the first window"
   (let ((result (do-applescript
@@ -75,7 +90,16 @@ go 1.12
 ;;;###autoload
 (defun hoe-leetcode/new-rust-problem ()
   (interactive)
-  (message "Not done yet"))
+  (let* ((root "/Users/yct21/code/playgrounds/leetcode-rust")
+         (title (hoe-leetcode/retrieve-chrome-current-tab-problem-title))
+         (id (hoe-leetcode/retrieve-chrome-current-tab-problem-id))
+         (solution-path (format "%s/%s-%04d" root title id))
+         (command (format "cargo new %s" solution-path)))
+    (shell-command command)
+    (find-file (format "%s/src/main.rs" solution-path))
+    (erase-buffer)
+    (insert hoe-leetcode//rust-template)
+    ))
 
 ;;;###autoload
 (defun hoe-leetcode/new-go-problem ()
@@ -105,7 +129,7 @@ go 1.12
     )
   )
 
-;;;###autoload (autoload '+leetcode/new-problem/body "core/autoload/hydras" nil t)
+;;;###autoload (autoload 'hoe-leetcode/new-problem/body "private-tools/leetcode/autoload" nil t)
 (defhydra hoe-leetcode/new-problem (:hint nil)
   "
   Open new problem
