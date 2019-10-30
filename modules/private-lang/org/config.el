@@ -14,10 +14,10 @@
  (:map org-mode-map
    :localleader
    (:desc "Set priority" :n "p" #'org-priority)
-   (:desc "Refile" :n "r" #'org-refile)
-   (:prefix "o"
-     (:when (featurep! :private-feature insert-chrome-url)
-       :desc "Insert link" :n "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org))))
+   (:desc "Refile" :n "r" #'org-refile)))
+   ;(:prefix "o"
+   ;  (:when (featurep! :private-feature insert-chrome-url)
+   ;   :desc "Insert link" :n "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org))))
 
 (after! org
   (set-face-attribute 'org-level-1 nil :height 1.1)
@@ -41,22 +41,23 @@
                   :todo "NOW")
            (:name "Short List"
                   :todo "SHORT-LIST")
+           (:name "Quick notes"
+                  :file-path "quick-notes")
            (:name "Important"
                   :priority "A")
+           (:name "Someday"
+                  :todo "SOMEDAY")
+           (:name "Blocked"
+                  :todo "BLOCKED")
            (:name "Work"
                   :file-path "work")
            (:name "Side project"
                   :file-path "side-project")
            (:name "Personal"
                   :file-path "personal")
-           (:name "Learning"
-                  :file-path "learning")
-           (:name "Quick notes"
-                  :file-path "quick-notes")
-           (:name "Someday"
-                  :todo "SOMEDAY")
-           (:name "Blocked"
-                  :todo "BLOCKED"))))
+           (:name "Utilities"
+                  :file-path "utilities")
+           )))
 
 (def-package! org-alert
   :config
