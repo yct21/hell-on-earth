@@ -9,6 +9,7 @@
        doom-dashboard
        doom-quit
        hl-todo
+       hydra
        modeline
        nav-flash
        ophints           ; highlight the region an operation acts on
@@ -26,7 +27,7 @@
        fold
        format
        snippets
-       rotate-text
+       word-wrap
 
        :emacs
        (dired +ranger +icons)
@@ -43,6 +44,7 @@
        lsp
 
        :lang
+       agda
        cc
        data
        elm
@@ -56,7 +58,6 @@
        ruby
        rest
        swift
-       rest
        sh
        web
        lua
@@ -72,6 +73,7 @@
        chinese
 
        :private-lang
+       agda
        (org
         +org-projectile
         +org-journal)
