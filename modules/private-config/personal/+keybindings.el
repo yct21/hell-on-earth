@@ -1,7 +1,5 @@
 ;;; private/personal/+keybindings.el -*- lexical-binding: t; -*-
 
-;;; General keybindings that modifies doom default bindings
-
 (map!
  ;; mac bindings
   "M-z" #'undo
@@ -10,13 +8,36 @@
   "M-w" #'delete-window
   "M-s" #'save-buffer
 
+  :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
+            (and (featurep! :editor snippets)
+                (bound-and-true-p yas-minor-mode)
+                (yas-maybe-expand-abbrev-key-filter 'yas-expand))
+            'yas-expand
+            (and (featurep! :completion company +tng)
+                (+company-has-completion-p))
+            '+company/complete)
+  :n [tab] (general-predicate-dispatch nil
+            (and (featurep! :editor fold)
+                (save-excursion (end-of-line) (invisible-p (point))))
+            '+fold/toggle
+            (fboundp 'evil-jump-item)
+            'evil-jump-item)
+  :v [tab] (general-predicate-dispatch nil
+            (and (bound-and-true-p yas-minor-mode)
+                (or (eq evil-visual-selection 'line)
+                    (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
+            'yas-insert-snippet
+            (fboundp 'evil-jump-item)
+            'evil-jump-item)
+
  ;; company
  :ni "M-i" #'+company/complete
- :ni "C-j" #'newline-and-indent
- ;; :ni "C-j" (lambda! (let ((posX (- (point) (line-beginning-position))))
- ;;                      (insert "\n")
- ;;                      (insert "\n")
- ;;                      (forward-line)))
+ ;; :ni "C-j" #'newline-and-indent
+ :ni "C-j" (lambda! (newline)
+                     (newline)
+                     (indent-according-to-mode)
+                     (forward-line -1)
+                     (indent-according-to-mode))
 
  ;; workspace
  :n "M-1" (lambda! (persp-switch "gtd"))

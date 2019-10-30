@@ -137,10 +137,12 @@
 (setq max-mini-window-height 0.7)
 
 (setq projectile-project-search-path
-      '("~/code/hub"
+      '("~/.pi_templates"
+        "~/code/hub"
         "~/code/side-projects"
         "~/code/docker"
         "~/code/nokia"
+        "~/code/observatory"
         "~/code/nokia/pr-analysis"
         "~/code/playgrounds"
         "~/code/personal"
