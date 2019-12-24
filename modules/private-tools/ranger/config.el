@@ -1,6 +1,6 @@
 ;;; private/ranger/config.el -*- lexical-binding: t; -*-
 
-(def-package! ranger
+(use-package! ranger
   :config
   (ranger-override-dired-mode t)
   (setq ranger-cleanup-eagerly t)

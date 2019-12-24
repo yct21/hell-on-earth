@@ -1,6 +1,6 @@
 ;;; private-tools/vlf/config.el -*- lexical-binding: t; -*-
 
-(def-package! vlf
+(use-package! vlf
   :config
   (require 'vlf-setup)
   )

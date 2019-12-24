@@ -2,7 +2,7 @@
 
 (add-to-list 'exec-path "/Users/yct21/code/emacs/elixir-lsp")
 
-(def-package! elixir-mode
+(use-package! elixir-mode
   :defer t
   :init
   ;; Disable default smartparens config. There are too many pairs; we only want

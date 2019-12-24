@@ -142,7 +142,6 @@
         "~/code/side-projects"
         "~/code/docker"
         "~/code/nokia"
-        "~/code/observatory"
         "~/code/nokia/pr-analysis"
         "~/code/playgrounds"
         "~/code/personal"

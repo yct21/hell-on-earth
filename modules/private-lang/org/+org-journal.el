@@ -1,6 +1,6 @@
 ;;; private/org/+org-journal.el -*- lexical-binding: t; -*-
 
-(def-package! org-journal
+(use-package! org-journal
   :init
   (map! :leader :n "oj" #'org-journal-new-entry)
   :config

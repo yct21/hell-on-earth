@@ -1,6 +1,6 @@
 ;;; private-tools/frog-jump-buffer/config.el -*- lexical-binding: t; -*-
 
-(def-package! frog-jump-buffer
+(use-package! frog-jump-buffer
   :config
   (dolist (regexp '("TAGS" "^\\*Compile-log" "-debug\\*$" "^\\:" "errors\\*$" "^\\*Backtrace" "-ls\\*$"
                   "stderr\\*$" "^\\*Flymake" "^\\*vc" "^\\*Warnings" "^\\*eldoc" "\\^*Shell Command"))

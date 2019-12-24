@@ -1,17 +1,5 @@
 ;;; private-tools/observatory/autoloads.el -*- lexical-binding: t; -*-
 
-;;;###autoload (autoload 'hoe/observatory-create-post/body "core/autoload/hydras" nil t)
-(defhydra hoe-observatory/create-post (:hint nil)
-  "
-  Observatory create post:
-  _b_:bliki
-  _n_:note
-  _c_:clipping "
-  ("b" hoe-observatory/create-bliki)
-  ("n" hoe-observatory/create-note)
-  ("c" hoe-observatory/create-clipping)
-  )
-
 ;;;###autodef
 (defconst hoe-observatory//draft-template
   "
@@ -25,9 +13,9 @@ categories: %s
   )
 
 ;;;###autoload
-(defun hoe-observatory/create-bliki (title)
+(defun hoe-observatory/create-snippet (title)
   (interactive "sTitle: ")
-  (hoe-observatory/create-draft "bliki" title)
+  (hoe-observatory/create-draft "snippet" title)
   )
 
 ;;;###autoload
@@ -51,7 +39,7 @@ categories: %s
                         (split-string it)
                         (string-join it "-")
                         (downcase it)))
-         (filepath (format "%s/source/_drafts/%s-%s.md"
+         (filepath (format "%s/%ss/%s.md"
                            hoe-observatory/root
                            category
                            filename)))
@@ -59,6 +47,6 @@ categories: %s
     (erase-buffer)
     (insert (format hoe-observatory//draft-template
                     title
-                    (format-time-string "%Y-%m-%d %H:%M:%S")
+                    (format-time-string "%Y-%m-%d")
                     category
                     ))))

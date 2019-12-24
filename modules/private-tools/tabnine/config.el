@@ -12,6 +12,8 @@
         company-require-match 'never
         company-global-modes
         '(not erc-mode message-mode help-mode gud-mode eshell-mode))
+  (define-key! company-active-map
+    "C-k" #'company-abort)
   (global-company-mode +1)
   )
 

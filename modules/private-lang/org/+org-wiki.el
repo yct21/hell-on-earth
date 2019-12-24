@@ -1,6 +1,6 @@
 ;;; private/org/+org-wiki.el -*- lexical-binding: t; -*-
 
-(def-package! org-wiki
+(use-package! org-wiki
   :mode
   :config
   (setq org-wiki-location "~/mini-galaxy")

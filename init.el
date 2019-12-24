@@ -44,7 +44,6 @@
        lsp
 
        :lang
-       agda
        cc
        data
        elm
@@ -62,6 +61,7 @@
        web
        lua
        (rust +lsp)
+       (kotlin +lsp)
 
        :config
        (default +bindings +evil-commands +smartparens)
@@ -73,7 +73,6 @@
        chinese
 
        :private-lang
-       agda
        (org
         +org-projectile
         +org-journal)
@@ -84,6 +83,7 @@
        reasonml
        typescript
        cucumber
+       kotlin
 
        :private-tools
        ;; ranger

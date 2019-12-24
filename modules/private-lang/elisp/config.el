@@ -1,6 +1,6 @@
 ;;; private/elisp/config.el -*- lexical-binding: t; -*-
 
-(def-package! lispyville
+(use-package! lispyville
   :hook ((emacs-lisp-mode) . lispyville-mode)
   :config
 

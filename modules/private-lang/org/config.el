@@ -32,7 +32,7 @@
         +org-capture-notes-file "~/orlog/gtd/quick-notes.org")
   )
 
-(def-package! org-super-agenda
+(use-package! org-super-agenda
   :config
   (org-super-agenda-mode)
 
@@ -59,6 +59,6 @@
                   :file-path "utilities")
            )))
 
-(def-package! org-alert
+(use-package! org-alert
   :config
   (setq alert-default-style 'notifier))

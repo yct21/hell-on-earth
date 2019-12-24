@@ -129,13 +129,3 @@ impl Solution {
     )
   )
 
-;;;###autoload (autoload 'hoe-leetcode/new-problem/body "private-tools/leetcode/autoload" nil t)
-(defhydra hoe-leetcode/new-problem (:hint nil)
-  "
-  Open new problem
-  _r_:rust
-  _g_:golang
-  "
-  ("r" hoe-leetcode/new-rust-problem)
-  ("g" hoe-leetcode/new-go-problem)
-  )

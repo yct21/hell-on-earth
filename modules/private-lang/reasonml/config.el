@@ -1,7 +1,7 @@
 ;;; private-lang/reasonml/config.el -*- lexical-binding: t; -*-
 
 
-(def-package! reason-mode
+(use-package! reason-mode
   :config
   (add-hook 'reason-mode-hook #'lsp!))
 
