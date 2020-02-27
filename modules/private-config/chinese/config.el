@@ -2,7 +2,8 @@
 
 (use-package! fcitx
   :config
-  (fcitx-evil-turn-on))
+  (fcitx-default-setup))
+  ;; (fcitx-evil-turn-on))
 
 (use-package! ace-pinyin
   :config

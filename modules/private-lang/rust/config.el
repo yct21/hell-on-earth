@@ -1,2 +1,1 @@
-(after! rustic
-  (setq rustic-lsp-server 'rust-analyzer))
+(setq lsp-rust-server 'rust-analyzer)

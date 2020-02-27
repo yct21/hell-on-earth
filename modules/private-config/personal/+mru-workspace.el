@@ -17,9 +17,9 @@
                       (other-persps (cdr persp-names-cache)))
                   (when (member new-persp-name other-persps)
                     (setq persp-names-cache
-                          (cons nil-persp
+                          (cons new-persp-name
                                 (cons
-                                 new-persp-name
+                                 nil-persp
                                  (delete new-persp-name other-persps))))))))
 
   (add-hook 'persp-renamed-functions

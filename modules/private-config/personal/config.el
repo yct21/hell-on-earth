@@ -48,13 +48,18 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      org-directory (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/gtd")
+      org-directory (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/peregrine")
       org-ellipsis " ▼ "
 
       ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
       ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
       doom-big-font (font-spec :family "Fira Mono" :size 19))
 
+;; deft
+(after! deft
+  (setq deft-directory org-directory)
+  (setq deft-recursive t)
+  )
 ;; (pcase (system-name)
 ;;   ((or "proteus" "halimede")
 ;;    (setq ivy-height 12

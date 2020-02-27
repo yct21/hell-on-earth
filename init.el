@@ -1,24 +1,26 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       ;; (company +auto)
+       company
        (ivy +childframe)
 
        :ui
+       deft
        doom
        doom-dashboard
        doom-quit
+       fill-column
        hl-todo
        hydra
        modeline
        nav-flash
-       ophints           ; highlight the region an operation acts on
+       ophints
        (popup +all +defaults)
        (pretty-code +fira)
+       unicode
        vc-gutter
        vi-tilde-fringe
        window-select
-       unicode
        workspaces
 
        :editor
@@ -32,24 +34,29 @@
        :emacs
        (dired +ranger +icons)
        electric
+       (ibuffer +icons)
        vc
 
+       :checkers
+       (syntax +childframe)
+
        :tools
-       eval
        editorconfig
+       (eval +overlay)
        docker
-       (flycheck +childframe)
        (lookup +docsets)
        magit
        lsp
+       pdf
 
        :lang
        cc
        data
-       elm
        emacs-lisp
-       ess
        (go +lsp)
+       (haskell +lsp +dante)
+       idris
+       (kotlin +lsp)
        javascript
        (markdown +pandoc)
        (org +gnuplot +pandoc +present)
@@ -61,7 +68,6 @@
        web
        lua
        (rust +lsp)
-       (kotlin +lsp)
 
        :config
        (default +bindings +evil-commands +smartparens)

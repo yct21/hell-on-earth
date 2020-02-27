@@ -2,5 +2,4 @@
 
 (map! :map markdown-mode-map
       :localleader
-      :prefix "i"
-      "l" #'+insert-chrome-url/insert-chrome-current-tab-url-in-md)
+      "L" #'+insert-chrome-url/insert-chrome-current-tab-url-in-md)

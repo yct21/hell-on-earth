@@ -7,6 +7,8 @@
   "M-v" #'yank
   "M-w" #'delete-window
   "M-s" #'save-buffer
+  "M-e" #'+eval:repl
+  "M-f" #'+format/buffer
 
   :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
             (and (featurep! :editor snippets)
@@ -40,7 +42,7 @@
                      (indent-according-to-mode))
 
  ;; workspace
- :n "M-1" (lambda! (persp-switch "gtd"))
+ :n "M-1" (lambda! (persp-switch "peregrine"))
 
  ;; evil commands
  ;; TODO: Put it into another module
@@ -142,7 +144,8 @@
      :desc "Recent project files" :n "R" #'projectile-recentf
      :desc "Yank filename" :n "y" #'+default/yank-buffer-filename
      :desc "Find file in private config" :n "p" #'+default/find-in-config
-     :desc "Browse private config" :n "P" #'+default/browse-config)
+     :desc "Browse private config" :n "P" #'+default/browse-config
+     :desc "Move this file" :n "m" #'doom/move-this-file)
 
    (:desc "git" :prefix "g"
      :desc "Magit blame" :n "b" #'magit-blame

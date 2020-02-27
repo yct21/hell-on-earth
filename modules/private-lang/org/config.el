@@ -14,6 +14,7 @@
  (:map org-mode-map
    :localleader
    (:desc "Set priority" :n "p" #'org-priority)
+   (:desc "insert link" :n "L" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org)
    (:desc "Refile" :n "r" #'org-refile)))
    ;(:prefix "o"
    ;  (:when (featurep! :private-feature insert-chrome-url)
@@ -28,13 +29,14 @@
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
-  (setq +org-capture-todo-file "~/orlog/gtd/quick-notes.org"
-        +org-capture-notes-file "~/orlog/gtd/quick-notes.org")
+  (setq +org-capture-todo-file (expand-file-name "quick-notes.org" org-directory)
+        +org-capture-notes-file (expand-file-name "quick-notes.org" org-directory))
   )
 
 (use-package! org-super-agenda
   :config
   (org-super-agenda-mode)
+  (setq org-agenda-files (list (expand-file-name "gtd" org-directory)))
 
   (setq org-super-agenda-groups
          '((:name "Now"
