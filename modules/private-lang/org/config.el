@@ -36,6 +36,7 @@
 (use-package! org-super-agenda
   :config
   (org-super-agenda-mode)
+  ;; (setq org-agenda-files (list (expand-file-name "gtd" org-directory)))
   (setq org-agenda-files (list (expand-file-name "gtd" org-directory)))
 
   (setq org-super-agenda-groups

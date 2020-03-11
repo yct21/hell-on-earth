@@ -54,11 +54,12 @@
     "funkenschlag/client"
     "funkenschlag/server"
     "funkenschlag/arbiter"
+    "substratekitties/runtime"
     ))
 
 (defun hoe/projectile-project-name (project-root)
   "Function to create project name"
-  (message "%s" project-root)
+  (message "Project name %s" project-root)
   (let ((custom-project-name (-find #'(lambda (str) (string-match str project-root)) hoe/custom-project-list)))
     (or custom-project-name (projectile-default-project-name project-root))))
 

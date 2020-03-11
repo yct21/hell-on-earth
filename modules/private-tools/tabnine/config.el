@@ -43,6 +43,6 @@
 
 (setq +lsp-company-backend '(company-lsp :with company-tabnine :separate))
 (after! company
-  (setq company-idle-delay 1
+  (setq company-idle-delay 0.2
         company-minimum-prefix-length 0
         company-show-numbers t))

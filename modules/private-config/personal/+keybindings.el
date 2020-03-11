@@ -1,91 +1,140 @@
-;;; private/personal/+keybindings.el -*- lexical-binding: t; -*-
+;;; config/default/+bindings.el -*- lexical-binding: t; -*-
 
+(when (featurep! :editor evil +everywhere)
+  ;; NOTE SPC u replaces C-u as the universal argument.
+
+  ;; Minibuffer
+  (define-key! evil-ex-completion-map
+    "C-a" #'evil-beginning-of-line
+    "C-b" #'evil-backward-char
+    "C-s" (if (featurep! :completion ivy)
+              #'counsel-minibuffer-history
+            #'helm-minibuffer-history))
+
+  (define-key! :keymaps +default-minibuffer-maps
+    [escape] #'abort-recursive-edit
+    "C-a"    #'move-beginning-of-line
+    "C-r"    #'evil-paste-from-register
+    "C-u"    #'evil-delete-back-to-indentation
+    "C-v"    #'yank
+    "C-w"    #'doom/delete-backward-word
+    "C-z"    (λ! (ignore-errors (call-interactively #'undo)))
+    ;; Scrolling lines
+    "C-j"    #'next-line
+    "C-k"    #'previous-line
+    "C-S-j"  #'scroll-up-command
+    "C-S-k"  #'scroll-down-command)
+
+  (define-key! read-expression-map
+    "C-j" #'next-line-or-history-element
+    "C-k" #'previous-line-or-history-element))
+
+
+;;
+;;; Global keybindings
 (map!
- ;; mac bindings
-  "M-z" #'undo
-  "M-c" #'evil-yank
-  "M-v" #'yank
-  "M-w" #'delete-window
-  "M-s" #'save-buffer
-  "M-e" #'+eval:repl
-  "M-f" #'+format/buffer
-
-  :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
-            (and (featurep! :editor snippets)
-                (bound-and-true-p yas-minor-mode)
-                (yas-maybe-expand-abbrev-key-filter 'yas-expand))
-            'yas-expand
-            (and (featurep! :completion company +tng)
-                (+company-has-completion-p))
-            '+company/complete)
-  :n [tab] (general-predicate-dispatch nil
-            (and (featurep! :editor fold)
-                (save-excursion (end-of-line) (invisible-p (point))))
-            '+fold/toggle
-            (fboundp 'evil-jump-item)
-            'evil-jump-item)
-  :v [tab] (general-predicate-dispatch nil
-            (and (bound-and-true-p yas-minor-mode)
-                (or (eq evil-visual-selection 'line)
-                    (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
-            'yas-insert-snippet
-            (fboundp 'evil-jump-item)
-            'evil-jump-item)
-
- ;; company
- :ni "M-i" #'+company/complete
- ;; :ni "C-j" #'newline-and-indent
- :ni "C-j" (lambda! (newline)
-                     (newline)
-                     (indent-according-to-mode)
-                     (forward-line -1)
-                     (indent-according-to-mode))
-
- ;; workspace
- :n "M-1" (lambda! (persp-switch "peregrine"))
-
- ;; evil commands
- ;; TODO: Put it into another module
  :nve "M-d" #'evil-scroll-down
  :nve "M-u" #'evil-scroll-up
  :ne "M-o" #'evil-jump-backward
+ :ni "M-z" #'undo
+ :ni "M-c" #'evil-yank
+ :i "M-v" #'yank
+ :ni "M-w" #'delete-window
+ :ni "M-s" #'save-buffer
+ :ni "M-e" #'+eval:repl
+ :ni "M-f" #'+format/buffer)
 
- ;; org gtd
+;; Smart tab, these will only work in GUI Emacs
+(map! :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
+                 (and (featurep! :editor snippets)
+                      (bound-and-true-p yas-minor-mode)
+                      (yas-maybe-expand-abbrev-key-filter 'yas-expand))
+                 #'yas-expand
+                 (and (featurep! :completion company +tng)
+                      (+company-has-completion-p))
+                 #'+company/complete)
+      :n [tab] (general-predicate-dispatch nil
+                 (and (featurep! :editor fold)
+                      (save-excursion (end-of-line) (invisible-p (point))))
+                 #'+fold/toggle
+                 (fboundp 'evil-jump-item)
+                 #'evil-jump-item)
+      :v [tab] (general-predicate-dispatch nil
+                 (and (bound-and-true-p yas-minor-mode)
+                      (or (eq evil-visual-selection 'line)
+                          (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
+                 #'yas-insert-snippet
+                 (fboundp 'evil-jump-item)
+                 #'evil-jump-item)
+
+      ;; Smarter newlines
+      :i [remap newline] #'newline-and-indent  ; auto-indent on newline
+      :i "C-j"           #'+default/newline    ; default behavior
+
+      (:after help :map help-mode-map
+        :n "o"       #'link-hint-open-link)
+      (:after helpful :map helpful-mode-map
+        :n "o"       #'link-hint-open-link)
+      (:after info :map Info-mode-map
+        :n "o"       #'link-hint-open-link)
+      (:after apropos :map apropos-mode-map
+        :n "o"       #'link-hint-open-link
+        :n "TAB"     #'forward-button
+        :n [tab]     #'forward-button
+        :n [backtab] #'backward-button)
+      (:after view :map view-mode-map
+        [escape]  #'View-quit-all)
+      (:after man :map Man-mode-map
+        :n "q"    #'kill-current-buffer)
+
+      :m "gs"     #'+evil/easymotion  ; lazy-load `evil-easymotion'
+      (:after (evil-org evil-easymotion)
+        :map evil-org-mode-map
+        :m "gsh" #'+org/goto-visible)
+
+      (:when (featurep! :editor multiple-cursors)
+        :prefix "gz"
+        :nv "d" #'evil-mc-make-and-goto-next-match
+        :nv "D" #'evil-mc-make-and-goto-prev-match
+        :nv "j" #'evil-mc-make-cursor-move-next-line
+        :nv "k" #'evil-mc-make-cursor-move-prev-line
+        :nv "m" #'evil-mc-make-all-cursors
+        :nv "n" #'evil-mc-make-and-goto-next-cursor
+        :nv "N" #'evil-mc-make-and-goto-last-cursor
+        :nv "p" #'evil-mc-make-and-goto-prev-cursor
+        :nv "P" #'evil-mc-make-and-goto-first-cursor
+        :nv "q" #'evil-mc-undo-all-cursors
+        :nv "t" #'+multiple-cursors/evil-mc-toggle-cursors
+        :nv "u" #'evil-mc-undo-last-added-cursor
+        :nv "z" #'+multiple-cursors/evil-mc-make-cursor-here
+        :v  "I" #'evil-mc-make-cursor-in-visual-selection-beg
+        :v  "A" #'evil-mc-make-cursor-in-visual-selection-end)
+
+      ;; misc
+      :n "C-S-f"  #'toggle-frame-fullscreen
+      :n "C-+"    #'doom/reset-font-size
+      ;; Buffer-local font resizing
+      :n "C-="    #'text-scale-increase
+      :n "C--"    #'text-scale-decrease
+      ;; Frame-local font resizing
+      :n "M-C-="  #'doom/increase-font-size
+      :n "M-C--"  #'doom/decrease-font-size)
+
+;;
+;;; Module keybinds
+
+;;; org mode
+(map!
  :ne "C-`" (lambda! (org-agenda nil "t"))
  :ne "M-`" (lambda! (org-capture nil "t"))
-
  (:map org-agenda-mode-map
    "j" #'evil-next-line
    "k" #'evil-previous-line
    "M-d" #'evil-scroll-down
-   "M-u" #'evil-scroll-up )
+   "M-u" #'evil-scroll-up ))
 
- (:map evil-window-map
-   "M-d" #'evil-scroll-down
-   "M-u" #'evil-scroll-up
-   "d" #'+workspace/close-window-or-workspace
-   "D" #'ace-delete-window
-   "S" #'+evil-window-split-a
-   "s" #'+evil-window-vsplit-a)
-
- ;; ivy
- (:after ivy
-   :map ivy-minibuffer-map
-   [escape] #'keyboard-escape-quit
-   [tab] #'ivy-call-and-recenter
-   "M-z" #'undo
-   "M-v" #'yank
-   "C-v" #'yank
-   "C-r" #'evil-paste-from-register
-   "M-k" #'ivy-previous-line
-   "M-j" #'ivy-next-line
-   "M-u" #'ivy-scroll-down-command
-   "M-d" #'ivy-scroll-up-command
-   "C-l" #'ivy-alt-done
-   "C-u" #'ivy-kill-line
-   "C-b" #'backward-word
-   "C-f" #'forward-word)
-
+;;; avy
+(map!
  (:after avy
    :nv "f" #'avy-goto-char
    :nv "F" #'avy-goto-line))
@@ -355,7 +404,7 @@
           (:when (featurep! :ui hydra)
             :desc "VCGutter"                "."   #'+vc/gutter-hydra/body)
           :desc "Revert hunk"               "r"   #'git-gutter:revert-hunk
-          :desc "Git stage hunk"            "s"   #'git-gutter:stage-hunk
+          :desc "Git stage hunk"            "s"   #'magit-status
           :desc "Git time machine"          "t"   #'git-timemachine-toggle
           :desc "Jump to next hunk"         "]"   #'git-gutter:next-hunk
           :desc "Jump to previous hunk"     "["   #'git-gutter:previous-hunk)
@@ -363,7 +412,6 @@
           :desc "Magit dispatch"            "/"   #'magit-dispatch
           :desc "Forge dispatch"            "'"   #'forge-dispatch
           :desc "Magit switch branch"       "b"   #'magit-branch-checkout
-          :desc "Magit status"              "g"   #'magit-status
           :desc "Magit file delete"         "D"   #'magit-file-delete
           :desc "Magit blame"               "B"   #'magit-blame-addition
           :desc "Magit clone"               "C"   #'magit-clone

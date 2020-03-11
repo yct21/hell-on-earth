@@ -28,6 +28,7 @@
        file-templates
        fold
        format
+       multiple-cursors
        snippets
        word-wrap
 
