@@ -29,8 +29,8 @@
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
-  (setq +org-capture-todo-file (expand-file-name "quick-notes.org" org-directory)
-        +org-capture-notes-file (expand-file-name "quick-notes.org" org-directory))
+  (setq +org-capture-todo-file (expand-file-name "gtd/quick-notes.org" org-directory)
+        +org-capture-notes-file (expand-file-name "gtd/quick-notes.org" org-directory))
   )
 
 (use-package! org-super-agenda

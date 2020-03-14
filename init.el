@@ -49,6 +49,7 @@
        magit
        lsp
        pdf
+       upload
 
        :lang
        cc

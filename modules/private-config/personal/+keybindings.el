@@ -17,6 +17,7 @@
     "C-r"    #'evil-paste-from-register
     "C-u"    #'evil-delete-back-to-indentation
     "C-v"    #'yank
+    "M-v"    #'yank
     "C-w"    #'doom/delete-backward-word
     "C-z"    (λ! (ignore-errors (call-interactively #'undo)))
     ;; Scrolling lines
@@ -40,6 +41,7 @@
  :ni "M-c" #'evil-yank
  :i "M-v" #'yank
  :ni "M-w" #'delete-window
+ :ni "M-p" #'projectile-switch-project
  :ni "M-s" #'save-buffer
  :ni "M-e" #'+eval:repl
  :ni "M-f" #'+format/buffer)
@@ -127,6 +129,7 @@
 (map!
  :ne "C-`" (lambda! (org-agenda nil "t"))
  :ne "M-`" (lambda! (org-capture nil "t"))
+ (:map evil-org-mode-map "M-i" #'org-insert-heading)
  (:map org-agenda-mode-map
    "j" #'evil-next-line
    "k" #'evil-previous-line
@@ -184,6 +187,7 @@
           :map ivy-minibuffer-map
           "C-SPC" #'ivy-call-and-recenter  ; preview file
           "C-l"   #'ivy-alt-done
+          "M-v"   #'yank
           "C-v"   #'yank)
         (:after counsel
           :map counsel-ag-map
@@ -273,6 +277,11 @@
 (when (featurep! :tools eval)
   (map! "M-r" #'+eval/buffer))
 
+;;; evil window
+(map!
+ (:map evil-window-map
+   "S" #'+evil-window-split-a
+   "s" #'+evil-window-vsplit-a))
 
 ;;
 ;;; <leader>
@@ -300,7 +309,6 @@
 
       :desc "Search for symbol in project" "/" #'+default/search-project-for-symbol-at-point
 
-      :desc "Find file in project"  "SPC"  #'projectile-find-file
       :desc "Jump to bookmark"      "RET"  #'bookmark-jump
 
       ;;; <leader> TAB --- workspace
