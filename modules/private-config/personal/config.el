@@ -77,7 +77,8 @@
   (_
    (setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light))))
 
-(modify-frame-parameters nil '((inhibit-double-buffering . t)))
+;; (modify-frame-parameters nil '((inhibit-double-buffering . t)))
+(add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
 
 (defvar xdg-data (getenv "XDG_DATA_HOME"))
 ;; (defvar xdg-bin (getenv "XDG_BIN_HOME"))
