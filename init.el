@@ -2,7 +2,7 @@
 
 (doom! :completion
        company
-       (ivy +childframe)
+       (ivy +prescient +icons)
 
        :ui
        deft
@@ -39,7 +39,7 @@
        vc
 
        :checkers
-       (syntax +childframe)
+       syntax
 
        :tools
        editorconfig
