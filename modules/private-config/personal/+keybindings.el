@@ -42,6 +42,7 @@
  :i "M-v" #'yank
  :ni "M-w" #'delete-window
  :ni "M-p" #'projectile-switch-project
+ :ni "C-p" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
  :ni "M-e" #'+eval:repl
  :ni "M-f" #'+format/buffer)
@@ -72,6 +73,7 @@
       ;; Smarter newlines
       :i [remap newline] #'newline-and-indent  ; auto-indent on newline
       :i "C-j"           #'+default/newline    ; default behavior
+      :i "M-j"           #'sp-newline    ; default behavior
 
       (:after help :map help-mode-map
         :n "o"       #'link-hint-open-link)
@@ -155,6 +157,8 @@
         (:after company
           (:map company-active-map
             "C-w"     nil  ; don't interfere with `evil-delete-backward-word'
+            [return]  nil
+            "RET"     nil
             "C-n"     #'company-select-next
             "C-p"     #'company-select-previous
             "C-j"     #'company-select-next
@@ -163,6 +167,13 @@
             "C-u"     #'company-previous-page
             "C-d"     #'company-next-page
             "C-s"     #'company-filter-candidates
+            "C-l"     #'company-complete-selection
+            "C-h"     (lambda! (progn
+                                 (newline)
+                                 (newline)
+                                 (indent-according-to-mode)
+                                 (previous-line)
+                                 (indent-according-to-mode)))
             "C-S-s"   (cond ((featurep! :completion helm) #'helm-company)
                             ((featurep! :completion ivy)  #'counsel-company))
             "C-SPC"   #'company-complete-common
