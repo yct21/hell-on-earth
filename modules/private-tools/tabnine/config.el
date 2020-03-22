@@ -52,6 +52,6 @@
   :after company
   )
 
-(after! tide-mode
+(after! tide
   (set-company-backend! 'tide-mode '(company-tide :with company-tabnine :separate))
   )
