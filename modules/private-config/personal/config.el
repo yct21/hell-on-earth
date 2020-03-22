@@ -152,3 +152,12 @@
         "~/code/playgrounds"
         "~/code/personal"
         "~/code/utils"))
+
+(define-key global-map [menu-bar file] nil)
+(define-key global-map [menu-bar buffers] nil)
+(define-key global-map [menu-bar options] nil)
+(define-key global-map [menu-bar edit] nil)
+(define-key global-map [menu-bar tools] nil)
+(define-key global-map [menu-bar outline] nil)
+(define-key global-map [menu-bar projectile] nil)
+(define-key global-map [menu-bar help] nil)
