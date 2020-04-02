@@ -38,7 +38,7 @@
 (ns-auto-titlebar-mode)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-dark+)
 
 (setq default-frame-alist
       (append default-frame-alist '((inhibit-double-buffering . t))))

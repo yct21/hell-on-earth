@@ -48,7 +48,7 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      org-directory (expand-file-name "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/peregrine")
+      org-directory (expand-file-name "~/observatory")
       org-ellipsis " ▼ "
 
       ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
@@ -140,7 +140,7 @@
 
 ;;(after! electric (electric-pair-mode))
 
-(setq max-mini-window-height 0.7)
+(setq max-mini-window-height 0.25)
 
 (setq projectile-project-search-path
       '("~/.pi_templates"
@@ -153,11 +153,18 @@
         "~/code/personal"
         "~/code/utils"))
 
-(define-key global-map [menu-bar file] nil)
-(define-key global-map [menu-bar buffers] nil)
-(define-key global-map [menu-bar options] nil)
-(define-key global-map [menu-bar edit] nil)
-(define-key global-map [menu-bar tools] nil)
-(define-key global-map [menu-bar outline] nil)
-(define-key global-map [menu-bar projectile] nil)
-(define-key global-map [menu-bar help] nil)
+;; ;; (define-key global-map [menu-bar file-menu] nil)
+;; ;; (define-key global-map [menu-bar buffers] nil)
+;; ;; (define-key global-map [menu-bar options] nil)
+;; (define-key global-map [menu-bar edit] nil)
+;; (define-key global-map [menu-bar help-menu] nil)
+;; (define-key global-map [menu-bar projectile-mode-menu] nil)
+;; ;; (define-key global-map [menu-bar tools] nil)
+;; ;; (define-key global-map [menu-bar outline] nil)
+;; ;; (define-key global-map [menu-bar projectile] nil)
+;; ;; (define-key global-map [menu-bar help] nil)
+
+;;; lint hint
+
+
+(setq! link-hint-avy-all-windows t)

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: source-code
+# uuid:
+# key: ;s
+# condition: t
+# --
+
+#+BEGIN_SRC $1
+$0
+#+END_SRC

@@ -16,8 +16,6 @@
 (defun elisp/define-keybindings ()
   "Define keybindings for lispyville"
   (map! :map emacs-lisp-mode-map
-        :n "A" #'lispyville-insert-at-end-of-list
-        :n "I" #'lispyville-insert-at-beginning-of-list
         (:localleader
           :desc "Drag forward" :n "j" #'lispyville-drag-forward
           :desc "Drag backward" :n "k" #'lispyville-drag-backward

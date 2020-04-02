@@ -1,8 +1,8 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       company
-       (ivy +prescient +icons)
+       (company +childframe)
+       (ivy +prescient +icons +childframe)
 
        :ui
        deft
@@ -39,7 +39,7 @@
        vc
 
        :checkers
-       syntax
+       (syntax +childframe)
 
        :tools
        editorconfig
@@ -61,7 +61,7 @@
        (kotlin +lsp)
        javascript
        (markdown +pandoc)
-       (org +gnuplot +pandoc +present)
+       (org +gnuplot +pandoc +present +roam)
        plantuml
        ruby
        rest
@@ -95,7 +95,7 @@
 
        :private-tools
        ;; ranger
-       wakatime
+       ;; wakatime
        git
        hexo
        jira

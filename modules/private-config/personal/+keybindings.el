@@ -39,6 +39,13 @@
  :ne "M-o" #'evil-jump-backward
  :ni "M-z" #'undo
  :ni "M-c" #'evil-yank
+ :i "C-h"     (lambda! (progn
+                         (newline)
+                         (newline)
+                         (indent-according-to-mode)
+                         (previous-line)
+                         (indent-according-to-mode)))
+ :ni "M-i" #'yas-next-field-or-maybe-expand
  :i "M-v" #'yank
  :ni "M-w" #'delete-window
  :ni "M-p" #'projectile-switch-project
@@ -131,7 +138,7 @@
 (map!
  :ne "C-`" (lambda! (org-agenda nil "t"))
  :ne "M-`" (lambda! (org-capture nil "t"))
- (:map evil-org-mode-map "M-i" #'org-insert-heading)
+ (:map evil-org-mode-map "C-i" #'org-insert-heading)
  (:map org-agenda-mode-map
    "j" #'evil-next-line
    "k" #'evil-previous-line
@@ -159,27 +166,25 @@
             "C-w"     nil  ; don't interfere with `evil-delete-backward-word'
             [return]  nil
             "RET"     nil
+            [tab]     nil
+            "TAB"     nil
             "C-n"     #'company-select-next
             "C-p"     #'company-select-previous
             "C-j"     #'company-select-next
             "C-k"     #'company-select-previous
-            "C-h"     #'company-show-doc-buffer
-            "C-u"     #'company-previous-page
-            "C-d"     #'company-next-page
-            "C-s"     #'company-filter-candidates
-            "C-l"     #'company-complete-selection
             "C-h"     (lambda! (progn
                                  (newline)
                                  (newline)
                                  (indent-according-to-mode)
                                  (previous-line)
                                  (indent-according-to-mode)))
+            "C-u"     #'company-previous-page
+            "C-d"     #'company-next-page
+            "C-s"     #'company-filter-candidates
+            "C-l"     #'company-complete-selection
             "C-S-s"   (cond ((featurep! :completion helm) #'helm-company)
                             ((featurep! :completion ivy)  #'counsel-company))
             "C-SPC"   #'company-complete-common
-            "TAB"     #'company-complete-common-or-cycle
-            [tab]     #'company-complete-common-or-cycle
-            [backtab] #'company-select-previous
             [f1]      nil)
           (:map company-search-map  ; applies to `company-filter-map' too
             "C-n"     #'company-select-next-or-abort
@@ -518,6 +523,7 @@
         :desc "New frame"          "f"  #'make-frame
         :desc "REPL"               "r"  #'+eval/open-repl-other-window
         :desc "REPL (same window)" "R"  #'+eval/open-repl-same-window
+        :desc "new snippet" "s" #'+snippets/new
         :desc "Dired"              "-"  #'dired-jump
         (:when (featurep! :ui neotree)
           :desc "Project sidebar"              "p" #'+neotree/open

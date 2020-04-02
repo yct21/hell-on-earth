@@ -2,7 +2,7 @@
   (setq rustic-lsp-server 'rust-analyzer)
   (setq lsp-rust-analyzer-server-command "~/.cargo/bin/rust-analyzer")
   (setq lsp-rust-server 'rust-analyzer)
-  (setq lsp-ui-doc-use-childframe nil)
+  (setq lsp-ui-doc-use-childframe t)
   )
 
 (after! rustic

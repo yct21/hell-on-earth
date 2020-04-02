@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: test case
+# uuid:
+# key: ;test
+# condition: t
+# --
+
+#[test]
+fn $1() {
+    $0
+}
