@@ -48,9 +48,6 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      org-directory (expand-file-name "~/observatory")
-      org-ellipsis " ▼ "
-
       ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
       ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
       doom-big-font (font-spec :family "Fira Mono" :size 19))
@@ -142,6 +139,8 @@
 
 (setq max-mini-window-height 0.25)
 
+(setq ns-use-proxy-icon nil)
+
 (setq projectile-project-search-path
       '("~/.pi_templates"
         "~/code/hub"
@@ -168,3 +167,5 @@
 
 
 (setq! link-hint-avy-all-windows t)
+
+(setq doom-theme 'doom-dark+)

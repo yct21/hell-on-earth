@@ -52,6 +52,7 @@
        upload
 
        :lang
+       agda
        cc
        data
        emacs-lisp
@@ -81,9 +82,7 @@
        chinese
 
        :private-lang
-       (org
-        +org-projectile
-        +org-journal)
+       org
        rust
        elixir
        elisp
@@ -105,6 +104,7 @@
        leetcode
        tabnine
        frog-jump-buffer
+       ;; pullover
 
        :private-ui
        ;; neutral-title-bar

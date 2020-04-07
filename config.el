@@ -12,11 +12,6 @@
   (add-hook! 'evil-mc-after-cursors-deleted
     (remove-hook 'evil-insert-state-entry-hook #'evil-mc-resume-cursors t)))
 
-;; completion/helm
-(after! helm
-  ;; Hide header lines in helm. I don't like them
-  (set-face-attribute 'helm-source-header nil :height 0.1))
-
 ;; tools/magit
 (after! magit
   (setq magit-repository-directories
@@ -37,8 +32,6 @@
 ;;; make title bar autoloaded
 (ns-auto-titlebar-mode)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(setq doom-theme 'doom-dark+)
 
 (setq default-frame-alist
       (append default-frame-alist '((inhibit-double-buffering . t))))

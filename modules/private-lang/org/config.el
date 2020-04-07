@@ -1,21 +1,6 @@
 ;;; private/org/config.el -*- lexical-binding: t; -*-
 
-(when (featurep! +org-projectile)
-  (use-package! org-projectile
-    :config
-    (org-projectile-per-project)
-    (setq org-projectile-per-project-filepath "TODOs.org"))
-  (load! "+org-projectile"))
-
-(when (featurep! +org-journal)
-  (load! "+org-journal"))
-
-(map!
- (:map org-mode-map
-   :localleader
-   (:desc "Set priority" :n "p" #'org-priority)
-   (:desc "insert link" :n "L" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org)
-   (:desc "Refile" :n "r" #'org-refile)))
+(setq hoe/peregrine "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/peregrine/gtd")
 
 (after! org
   (set-face-attribute 'org-level-1 nil :height 1.1)
@@ -24,17 +9,16 @@
   ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶ ✿ "❀"
   (setq org-bullets-bullet-list '("✸" "✿" "◉" "○" "●" "◇"))
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)")
+        (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)" "OB(r)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
-  (setq +org-capture-todo-file (expand-file-name "gtd/quick-notes.org" org-directory)
-        +org-capture-notes-file (expand-file-name "gtd/quick-notes.org" org-directory))
-  )
+  (setq +org-capture-todo-file (expand-file-name "quick-notes.org" hoe/peregrine)
+        +org-capture-notes-file (expand-file-name "quick-notes.org" hoe/peregrine)))
 
 (use-package! org-super-agenda
   :config
   (org-super-agenda-mode)
   ;; (setq org-agenda-files (list (expand-file-name "gtd" org-directory)))
-  (setq org-agenda-files (list (expand-file-name "gtd" org-directory)))
+  (setq org-agenda-files (list hoe/peregrine))
 
   (setq org-super-agenda-groups
         '((:name "Now"
@@ -64,15 +48,48 @@
   (setq alert-default-style 'notifier))
 
 (setq +org-babel-mode-alist
-'((cpp . C)
-  (C++ . C)
-  (D . C)
-  (rust . rustic)
-  (sh . shell)
-  (bash . shell)
-  (matlab . octave)
-  (amm . ammonite)))
+      '((cpp . C)
+        (C++ . C)
+        (D . C)
+        (rust . rustic)
+        (sh . shell)
+        (bash . shell)
+        (matlab . octave)
+        (amm . ammonite)))
+
+;;; org-roam
+(defun my-org-protocol-focus-advice (orig &rest args)
+  (x-focus-frame nil)
+  (apply orig args))
 
 (after! org-roam
   (setq org-roam-directory "~/observatory")
+  (setq org-roam-graph-viewer "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+
+  (advice-add 'org-roam-protocol-open-ref :around
+              #'my-org-protocol-focus-advice)
+  (advice-add 'org-roam-protocol-open-file :around
+              #'my-org-protocol-focus-advice)
+  )
+
+;;; org-journal
+(use-package! org-journal
+  :init
+  (map! :leader :n "oj" #'org-journal-new-entry)
+  :config
+  (setq org-journal-dir "~/.stf")
+  (setq org-journal-file-format "%Y%m%d.stf")
+  (setq org-journal-find-file (lambda (filename)
+                                (let ((buffer (find-file-noselect filename)))
+                                  (display-buffer buffer)
+                                  (org-journal-mode)
+                                  )
+                                ))
+  (setq org-journal-carryover-items ""))
+
+(set-popup-rule!
+  ".*\\.stf$"
+  :select t
+  :modeline t
+  :autosave t
   )

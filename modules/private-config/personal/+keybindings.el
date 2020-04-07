@@ -49,10 +49,10 @@
  :i "M-v" #'yank
  :ni "M-w" #'delete-window
  :ni "M-p" #'projectile-switch-project
- :ni "C-p" #'lsp-execute-code-action
+ :ni "M-f" #'+ivy/projectile-find-file
+ :ni "C-e" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
- :ni "M-e" #'+eval:repl
- :ni "M-f" #'+format/buffer)
+ :ni "C-f" #'+format/buffer)
 
 ;; Smart tab, these will only work in GUI Emacs
 (map! :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
@@ -138,7 +138,17 @@
 (map!
  :ne "C-`" (lambda! (org-agenda nil "t"))
  :ne "M-`" (lambda! (org-capture nil "t"))
- (:map evil-org-mode-map "C-i" #'org-insert-heading)
+ (:map evil-org-mode-map
+   "C-i" #'org-insert-heading)
+ (:map org-mode-map
+   :ni "M-f" #'org-roam-find-file
+   :ni "M-i" #'org-roam-insert
+   :ni "M-y" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org
+   :ni "C-o" #'link-hint-open-link
+
+   :localleader
+   :n "p" #'org-priority
+   )
  (:map org-agenda-mode-map
    "j" #'evil-next-line
    "k" #'evil-previous-line
@@ -297,6 +307,7 @@
 (map!
  (:map evil-window-map
    "S" #'+evil-window-split-a
+   "D" #'ace-delete-window
    "s" #'+evil-window-vsplit-a))
 
 ;;
@@ -489,10 +500,11 @@
       (:prefix-map ("n" . "notes")
         :desc "Search notes for symbol"      "*" #'+default/search-notes-for-symbol-at-point
         :desc "Org agenda"                   "a" #'org-agenda
-        :desc "Toggle org-clock"             "c" #'+org/toggle-clock
-        :desc "Cancel org-clock"             "C" #'org-clock-cancel
         :desc "Open deft"                    "d" #'deft
-        :desc "Find file in notes"           "f" #'+default/find-in-notes
+        :desc "Find file in notes"           "f" #'org-roam-find-file
+        :desc "Insert note link"             "i" #'org-roam-insert
+        :desc "Switch to note buffer"        "b" #'org-roam-switch-to-buffer
+        :desc "org roam mode"                "r" #'org-roam
         :desc "Browse notes"                 "F" #'+default/browse-notes
         :desc "Org store link"               "l" #'org-store-link
         :desc "Tags search"                  "m" #'org-tags-view
@@ -520,7 +532,9 @@
           :desc "View search"    "v"  #'org-search-view)
         :desc "Default browser"    "b"  #'browse-url-of-file
         :desc "Start debugger"     "d"  #'+debugger/start
-        :desc "New frame"          "f"  #'make-frame
+        :desc "switch frame" "f" (lambda! () (if (eq doom-theme 'doom-nord-light)
+                                                 (load-theme 'doom-dark+)
+                                               (load-theme 'doom-nord-light)))
         :desc "REPL"               "r"  #'+eval/open-repl-other-window
         :desc "REPL (same window)" "R"  #'+eval/open-repl-same-window
         :desc "new snippet" "s" #'+snippets/new
