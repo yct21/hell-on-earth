@@ -1,0 +1,29 @@
+* Default :global:
+* org-mode
+** s: source block :src:
+
+#+BEGIN_SRC org
+#+BEGIN_SRC $1
+$0
+#+END_SRC
+#+END_SRC
+
+
+* rustic-mode
+** tmod: test module :src:
+
+#+BEGIN_SRC rustic
+#[cfg(test)]
+mod tests {
+    $0
+}
+#+END_SRC
+** tc: test case :src:
+
+#+BEGIN_SRC rustic
+#[test]
+fn test_$1() {
+    $0
+}
+#+END_SRC
+* c++-mode

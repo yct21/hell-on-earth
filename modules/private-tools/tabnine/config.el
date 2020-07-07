@@ -41,17 +41,16 @@
 ;;   ;; (add-to-list 'company-backends #'company-tabnine)
 ;;   )
 
-(after! company
+(use-package! company-tabnine
+  :after company
+  :config
   (setq +lsp-company-backend 'company-capf)
+  (setq company-frontends '(company-pseudo-tooltip-frontend))
   (setq company-idle-delay 0
         company-minimum-prefix-length 0
         company-show-numbers t)
   )
 
-(use-package! company-tabnine
-  :after company
-  )
-
-(after! tide
   (set-company-backend! 'tide-mode '(company-tide :with company-tabnine :separate))
+(after! tide
   )

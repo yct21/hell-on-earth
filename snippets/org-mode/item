@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: item
+# key: ;i
+# condition: t
+# --
+
+- [ ] $0

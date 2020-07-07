@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 (doom! :completion
-       (company +childframe)
+       company
        (ivy +prescient +icons +childframe)
 
        :ui
@@ -9,7 +9,6 @@
        doom
        doom-dashboard
        doom-quit
-       fill-column
        hl-todo
        hydra
        modeline
@@ -17,7 +16,7 @@
        ophints
        (popup +all +defaults)
        (pretty-code +fira)
-       unicode
+       ;; unicode
        vc-gutter
        vi-tilde-fringe
        window-select
@@ -43,8 +42,9 @@
 
        :tools
        editorconfig
-       (eval +overlay)
+       eval
        docker
+       (debugger +lsp)
        (lookup +docsets)
        magit
        lsp
@@ -53,11 +53,11 @@
 
        :lang
        agda
-       cc
+       (cc +lsp)
        data
        emacs-lisp
        (go +lsp)
-       (haskell +lsp +dante)
+       (haskell +lsp)
        idris
        (kotlin +lsp)
        javascript
@@ -80,8 +80,10 @@
         +keybindings
         +mru-workspace)
        chinese
+       snippets
 
        :private-lang
+       cc
        org
        rust
        elixir

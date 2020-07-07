@@ -8,3 +8,5 @@
 
 (package! company-prescient :disable t)
 (package! doom-snippets :ignore t)
+
+(package! org-roam :recipe (:host github :repo "org-roam/org-roam"))

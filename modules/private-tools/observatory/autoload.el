@@ -34,7 +34,8 @@ categories: %s
   )
 
 ;;;###autoload
-(defun hoe-observatory/create-draft (category title)
+(defun hoe-observatory/create-note (title)
+  (interactive "sTitle: ")
   (let* ((filename (--> title
                         (split-string it)
                         (string-join it "-")

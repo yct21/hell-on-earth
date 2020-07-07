@@ -15,7 +15,7 @@
 (defun +workspace-list-names-limited ()
   (let* ((names (+workspace-list-names))
          (substracted-names (seq-subseq names 0 (min 5 (length names))))
-        (current-name (+workspace-current-name)))
+         (current-name (+workspace-current-name)))
     (mapconcat
      #'identity
      (cl-loop for i to (length substracted-names)
@@ -48,15 +48,14 @@
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
 
-      ;; doom-variable-pitch-font (font-spec :family "Fira Mono")
-      ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-      doom-big-font (font-spec :family "Fira Mono" :size 19))
+      )
 
 ;; deft
 (after! deft
   (setq deft-directory org-directory)
   (setq deft-recursive t)
   )
+
 ;; (pcase (system-name)
 ;;   ((or "proteus" "halimede")
 ;;    (setq ivy-height 12
@@ -67,12 +66,11 @@
 ;;    (setq ivy-posframe-font (font-spec :family "Input Mono Narrow" :size 18)
 ;;          doom-font (font-spec :family "Input Mono Narrow" :size 16 :weight 'semi-light))))
 
-(pcase (system-name)
-  ((or "proteus" "halimede")
-   (setq ivy-posframe-font (font-spec :family "Source Code Pro" :size 16)
-         ivy-height 12))
-  (_
-   (setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light))))
+(setq doom-big-font (font-spec :family "Fira Mono" :size 19))
+(setq doom-font (font-spec :family "Fira Code" :size 16 :weight 'semi-light))
+;; (setq doom-font (font-spec :family "Source Code Pro" :size 16 :weight 'semi-light))
+(setq doom-unicode-font (font-spec :family "Fira Code"))
+(setq doom-variable-pitch-font (font-spec :family "Fira Code"))
 
 ;; (modify-frame-parameters nil '((inhibit-double-buffering . t)))
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))
@@ -94,9 +92,9 @@
 (setq-default evil-shift-width 2)
 
 (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
-          ("org-cn"   . "http://elpa.emacs-china.org/org/")
-          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
+      '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+        ("org-cn"   . "http://elpa.emacs-china.org/org/")
+        ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
 
 ;; (setq url-proxy-services
 ;;    '(("http"     . "10.144.1.10:8080")
@@ -131,7 +129,7 @@
 
 (after! projectile
   (add-to-list 'projectile-globally-ignored-files ".projectile")
-)
+  )
 
 (setq mac-command-modifier 'meta)
 
@@ -143,13 +141,16 @@
 
 (setq projectile-project-search-path
       '("~/.pi_templates"
+        "~/doc"
         "~/code/hub"
         "~/code/side-projects"
         "~/code/docker"
         "~/code/nokia"
         "~/code/nokia/pr-analysis"
+        "~/code/playgrounds/leetcode-rust"
         "~/code/playgrounds"
         "~/code/personal"
+        "~/code/emacs"
         "~/code/utils"))
 
 ;; ;; (define-key global-map [menu-bar file-menu] nil)
@@ -168,4 +169,13 @@
 
 (setq! link-hint-avy-all-windows t)
 
-(setq doom-theme 'doom-dark+)
+
+(setq doom-theme 'doom-city-lights)
+
+(after! magit-todo
+  (add-to-list 'magit-todos-keywords-list "todo!")
+  )
+
+;;; spell check
+(after! ispell
+  (setq ispell-local-dictionary "en_AU"))

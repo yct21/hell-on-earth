@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: quote block
+# uuid:
+# key: ;q
+# condition: t
+# --
+
+#+BEGIN_QUOTE
+$0
+#+END_QUOTE

@@ -1,5 +1,7 @@
 ;;; private-config/personal/+mru-workspace.el -*- lexical-binding: t; -*-
 
+(defvar hoe/workspaces nil)
+
 (defun hoe/after-switch-project (dir)
   (unless (> (length (persp-buffer-list)) 0)
     (doom-project-find-file dir)
@@ -10,6 +12,7 @@
 (setq +workspaces-on-switch-project-behavior t)
 
 (after! persp-mode
+  (setq hoe/workspaces persp-names-cache)
   (add-hook 'persp-before-switch-functions
             #'(lambda (new-persp-name w-or-f)
                 (let ((cur-persp-name (safe-persp-name (get-current-persp)))
@@ -59,7 +62,6 @@
 
 (defun hoe/projectile-project-name (project-root)
   "Function to create project name"
-  (message "Project name %s" project-root)
   (let ((custom-project-name (-find #'(lambda (str) (string-match str project-root)) hoe/custom-project-list)))
     (or custom-project-name (projectile-default-project-name project-root))))
 
