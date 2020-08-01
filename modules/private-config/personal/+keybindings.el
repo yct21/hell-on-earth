@@ -48,8 +48,10 @@
                       (indent-according-to-mode)))
  :ni "M-i" #'yankpad-insert
  :i "M-v" #'yank
+:ni "C-k" (cmd! (end-of-line)
+                (newline))
  :ni "M-w" #'delete-window
- :ni "M-p" #'projectile-switch-project
+ :ni "M-p" (cmd! (progn (counsel-projectile-switch-project) (delete-other-windows)))
  :ni "M-f" #'+ivy/projectile-find-file
  :ni "C-e" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
@@ -163,9 +165,7 @@
 
 ;;; idris-mode
 (map! :map idris-mode-map
-      :ni "M-r" #'idris-load-file
-      :ni "C-k" (cmd! (end-of-line)
-                      (newline)))
+  :ni "M-r" #'idris-load-file)
 
 ;;; avy
 (map!

@@ -140,10 +140,10 @@
 (setq ns-use-proxy-icon nil)
 
 (setq projectile-project-search-path
-      '("~/.pi_templates"
-        "~/doc"
+      '("~/doc"
         "~/code/hub"
         "~/code/side-projects"
+        "~/code/side-projects/mockingbird"
         "~/code/docker"
         "~/code/nokia"
         "~/code/nokia/pr-analysis"
@@ -170,7 +170,7 @@
 (setq! link-hint-avy-all-windows t)
 
 
-(setq doom-theme 'doom-city-lights)
+(setq doom-theme 'doom-moonlight)
 
 (after! magit-todo
   (add-to-list 'magit-todos-keywords-list "todo!")

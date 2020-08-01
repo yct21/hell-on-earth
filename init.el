@@ -27,7 +27,6 @@
        file-templates
        fold
        format
-       multiple-cursors
        snippets
        word-wrap
 
@@ -85,6 +84,7 @@
        :private-lang
        cc
        org
+       haskell
        rust
        elixir
        elisp

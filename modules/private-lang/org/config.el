@@ -44,6 +44,9 @@
            :todo "SHORT-LIST")
           (:name "Important"
            :priority "A")
+          (:priority "C"
+           :name "Rear"
+           :order 8)
           (:name "Quick notes"
            :file-path "quick-notes")
           (:name "Work"
