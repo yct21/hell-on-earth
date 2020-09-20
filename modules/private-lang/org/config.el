@@ -8,6 +8,8 @@
 
   ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶ ✿ "❀"
   ;; (setq org-bullets-bullet-list '("✸" "✿" "◉" "○" "●" "◇"))
+  (setq org-attach-id-dir "~/resources/org-attachments")
+ 
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)" "OB(r)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
@@ -88,6 +90,7 @@
 (after! org-roam
   (setq org-roam-directory "~/doc/observatory")
   (setq org-roam-graph-viewer "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
+  (setq org-roam-server-network-poll nil)
   (setq +org-roam-open-buffer-on-find-file nil)
   (add-hook! 'org-roam-mode-hook #'flymake-mode)
   (set-company-backend! 'org-mode '(company-tabnine company-yasnippet company-dabbrev))

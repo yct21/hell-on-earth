@@ -58,6 +58,8 @@
     "funkenschlag/server"
     "funkenschlag/arbiter"
     "substratekitties/runtime"
+    "mockingbird/mirai-client"
+    "mockingbird/main"
     ))
 
 (defun hoe/projectile-project-name (project-root)

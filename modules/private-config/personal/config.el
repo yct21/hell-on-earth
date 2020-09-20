@@ -149,6 +149,7 @@
         "~/code/nokia/pr-analysis"
         "~/code/playgrounds/leetcode-rust"
         "~/code/playgrounds"
+        "~/code/slides"
         "~/code/personal"
         "~/code/emacs"
         "~/code/utils"))
@@ -170,7 +171,7 @@
 (setq! link-hint-avy-all-windows t)
 
 
-(setq doom-theme 'doom-moonlight)
+(setq doom-theme 'doom-nord)
 
 (after! magit-todo
   (add-to-list 'magit-todos-keywords-list "todo!")
@@ -179,3 +180,8 @@
 ;;; spell check
 (after! ispell
   (setq ispell-local-dictionary "en_AU"))
+
+;;; I hate my work
+(add-to-list 'auto-mode-alist '("\\.pkgfile\\'" . sh-mode))
+
+;;; disable mouse

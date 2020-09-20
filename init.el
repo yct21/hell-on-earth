@@ -15,7 +15,7 @@
        nav-flash
        ophints
        (popup +all +defaults)
-       (pretty-code +fira)
+       (ligatures +fira)
        ;; unicode
        vc-gutter
        vi-tilde-fringe
@@ -37,7 +37,7 @@
        vc
 
        :checkers
-       (syntax +childframe)
+       syntax
 
        :tools
        editorconfig
@@ -47,7 +47,6 @@
        (lookup +docsets)
        magit
        lsp
-       pdf
        upload
 
        :lang
@@ -61,7 +60,7 @@
        (kotlin +lsp)
        javascript
        (markdown +pandoc)
-       (org +gnuplot +pandoc +present +roam)
+       (org +gnuplot +pandoc +present +roam +pretty)
        plantuml
        ruby
        rest
@@ -70,16 +69,20 @@
        web
        lua
        (rust +lsp)
+       (yaml +lsp)
 
        :config
        (default +bindings +evil-commands +smartparens)
+
+       :os
+       macos
 
        :private-config
        (personal
         +keybindings
         +mru-workspace)
        chinese
-       snippets
+       disable-mouse
 
        :private-lang
        cc
@@ -105,7 +108,6 @@
        observatory
        leetcode
        tabnine
-       frog-jump-buffer
        ;; pullover
 
        :private-ui

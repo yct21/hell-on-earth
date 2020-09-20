@@ -2,4 +2,4 @@
 
 (use-package! org-jira
   :config
-  (setq jiralib-url "https://jiradc.int.net.nokia.com"))
+  (setq jiralib-url "https://jiradc.ext.net.nokia.com"))

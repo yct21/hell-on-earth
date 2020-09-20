@@ -30,7 +30,6 @@
 ;;; load private settings
 
 ;;; make title bar autoloaded
-(ns-auto-titlebar-mode)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 (setq default-frame-alist

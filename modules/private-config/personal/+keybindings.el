@@ -52,7 +52,7 @@
                 (newline))
  :ni "M-w" #'delete-window
  :ni "M-p" (cmd! (progn (counsel-projectile-switch-project) (delete-other-windows)))
- :ni "M-f" #'+ivy/projectile-find-file
+ :ni "M-f" #'counsel-git
  :ni "C-e" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
  :ni "C-f" #'+format/buffer)

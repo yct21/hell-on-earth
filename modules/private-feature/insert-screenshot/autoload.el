@@ -40,3 +40,6 @@
   (if (equal (file-name-extension (buffer-file-name)) "org")
       (insert (format "[[%s%s]]" prefix imagename))
     (insert (format "![%s](%s%s)" imagename prefix imagename))))
+
+;; check current buffer
+;; for org mode
