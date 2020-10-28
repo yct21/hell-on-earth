@@ -29,5 +29,6 @@
     )
   )
 
-(after! lsp-clients
-  (set-lsp-priority! 'clangd 1))
+(after! lsp-mode
+  (add-to-list 'lsp-disabled-clients 'ccls)
+  )
