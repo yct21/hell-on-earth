@@ -47,6 +47,7 @@
        (lookup +docsets)
        magit
        lsp
+       taskrunner
        upload
 
        :lang
@@ -60,7 +61,7 @@
        (kotlin +lsp)
        javascript
        (markdown +pandoc)
-       (org +gnuplot +pandoc +present +roam +pretty)
+       (org +gnuplot +pandoc +present +pretty)
        plantuml
        ruby
        rest
@@ -86,7 +87,7 @@
 
        :private-lang
        cc
-       org
+       (org +observatory)
        haskell
        rust
        elixir
@@ -116,6 +117,7 @@
 
        :private-feature
        evil
+       org-roam
        insert-screenshot
        insert-chrome-url)
 

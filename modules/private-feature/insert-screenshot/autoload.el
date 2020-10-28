@@ -10,7 +10,7 @@
       (setq basename (format-time-string "%Y%m%d_%H%M%S")))
   (setq fullpath
         (concat (file-name-directory (buffer-file-name))
-                "../images/"
+                "/assets/"
                 (file-name-base (buffer-file-name))
                 "_"
                 basename))
@@ -27,9 +27,9 @@
             (progn
               (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
               (shell-command-to-string resize-command-str)))
-        (insert "#+attr_html: :width 500px")
-        (insert "#+attr_latex: :width 500px")
-        (hoe//insert-org-or-md-img-link "../images/" relativepath))
+        (insert "#+attr_html: :width 500px\n")
+        (insert "#+attr_latex: :width 500px\n")
+        (hoe//insert-org-or-md-img-link "./assets/" relativepath))
     (progn
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))
       (hoe//insert-org-or-md-img-link "./" (concat basename ".png"))))
