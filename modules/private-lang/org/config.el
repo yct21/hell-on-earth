@@ -82,26 +82,6 @@
         (matlab . octave)
         (amm . ammonite)))
 
-;;; org-roam
-(defun my-org-protocol-focus-advice (orig &rest args)
-  (x-focus-frame nil)
-  (apply orig args))
-
-(after! org-roam
-  (setq org-roam-directory "~/doc/observatory")
-  (setq org-roam-graph-viewer "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
-  (setq org-roam-server-network-poll nil)
-  (setq +org-roam-open-buffer-on-find-file nil)
-  (add-hook! 'org-roam-mode-hook #'flymake-mode)
-  (set-company-backend! 'org-mode '(company-tabnine company-yasnippet company-dabbrev))
-  (advice-add 'org-roam-protocol-open-ref :around
-              #'my-org-protocol-focus-advice)
-  (advice-add 'org-roam-protocol-open-file :around
-              #'my-org-protocol-focus-advice)
-
-  (setq org-roam-capture-templates '(("d" "default" plain #'org-roam-capture--get-point "%?" :file-name "%<%Y%m%d%H%M%S>-${slug}" :head "#+TITLE: ${title}\n#+TODO: TODO\n#+ROAM_TAGS:" :unnarrowed t))
-        )
-  )
 
 ;;; org-journal
 (use-package! org-journal
@@ -119,6 +99,14 @@
   (setq org-journal-carryover-items "")
   )
 
+(use-package! org-projectile
+  :init
+  (map! :leader :n "pj" #'org-projectile-goto-location-for-project)
+  :config
+  (org-projectile-per-project)
+  (setq org-projectile-per-project-filepath "scratch.org")
+  )
+
 (set-popup-rule!
   ".*\\.stf$"
   :select t
@@ -130,3 +118,9 @@
   :config
   (setq org-roam-server-port 2020)
   )
+
+;;; org-attach
+(setq org-attach-dir "~/doc/org-attachments")
+(setq org-attach-id-dir "~/doc/org-attachments")
+
+(load! "+observatory")
