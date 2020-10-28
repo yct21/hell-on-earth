@@ -48,8 +48,8 @@
                       (indent-according-to-mode)))
  :ni "M-i" #'yankpad-insert
  :i "M-v" #'yank
-:ni "C-k" (cmd! (end-of-line)
-                (newline))
+ :ni "C-k" (cmd! (end-of-line)
+                 (newline))
  :ni "M-w" #'delete-window
  :ni "M-p" (cmd! (progn (counsel-projectile-switch-project) (delete-other-windows)))
  :ni "M-f" #'counsel-git
@@ -144,15 +144,24 @@
 
 ;;; org mode
 (map!
- :ne "C-`" (cmd! (org-agenda nil "t"))
- :ne "M-`" #'hoe-peregrine/create-task
+ :ni "C-`" (cmd! (org-agenda nil "t"))
+ :ni "M-`" #'hoe-peregrine/create-task
+ :ni "C-h" (cmd!
+            (unless (equal persp-last-persp-name "observatory")
+              (persp-switch "observatory"))
+            (org-roam-find-file))
  (:map evil-org-mode-map
   "C-i" #'org-insert-heading)
+
  (:map org-mode-map
-  :ni "M-f" #'org-roam-find-file
-  :ni "M-i" #'org-roam-insert
   :ni "M-y" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org
+  :ni "M-i" #'org-roam-insert
+  :n  "C-t" #'hoe-observatory/insert-tag
   :ni "C-o" #'link-hint-open-link
+  :ni "C-h" (cmd!
+              (unless (equal persp-last-persp-name "observatory")
+                (persp-switch "observatory"))
+              (org-roam-find-file))
 
   :localleader
   :n "p" #'org-priority
@@ -165,7 +174,7 @@
 
 ;;; idris-mode
 (map! :map idris-mode-map
-  :ni "M-r" #'idris-load-file)
+      :ni "M-r" #'idris-load-file)
 
 ;;; avy
 (map!
@@ -282,7 +291,7 @@
        :g "M-7"   #'+workspace/switch-to-6
        :g "M-8"   #'+workspace/switch-to-7
        :g "M-9"   #'+workspace/switch-to-8
-       :g "M-0"   (cmd! (persp-switch "others"))))
+       :g "M-0"   (cmd! (persp-switch "observatory"))))
 
 ;;; :editor
 (map! (:when (featurep! :editor format)
@@ -423,6 +432,12 @@
        :desc "List errors"                           "x"   #'flymake-show-diagnostics-buffer
        (:when (featurep! :checkers syntax)
         :desc "List errors"                         "x"   #'flycheck-list-errors))
+
+        ;;; <leader> e --- personal configuration
+      (:prefix-map ("e" . "personal")
+       (:prefix-map ("o" . "opacity")
+        ))
+
 
       ;;; <leader> f --- file
       (:prefix-map ("f" . "file")
@@ -611,7 +626,12 @@
        :desc "Pop up scratch buffer"        "x" #'doom/open-project-scratch-buffer
        :desc "Switch to scratch buffer"     "X" #'doom/switch-to-project-scratch-buffer
        :desc "List project tasks"           "t" #'magit-todos-list
-       :desc "Test project"                 "T" #'projectile-test-project)
+       :desc "Test project"                 "T" #'projectile-test-project
+       (:when (and (featurep! :tools taskrunner)
+                   (or (featurep! :completion ivy)
+                       (featurep! :completion helm)))
+        :desc "List project tasks"          "z" #'+taskrunner/project-tasks)
+       )
 
       ;;; <leader> q --- quit/session
       (:prefix-map ("q" . "quit/session")

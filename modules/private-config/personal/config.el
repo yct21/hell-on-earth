@@ -171,7 +171,7 @@
 (setq! link-hint-avy-all-windows t)
 
 
-(setq doom-theme 'doom-nord)
+(setq doom-theme 'doom-nova)
 
 (after! magit-todo
   (add-to-list 'magit-todos-keywords-list "todo!")
@@ -184,4 +184,5 @@
 ;;; I hate my work
 (add-to-list 'auto-mode-alist '("\\.pkgfile\\'" . sh-mode))
 
-;;; disable mouse
+;;; opacity
+(modify-frame-parameters nil `((alpha  97)))
