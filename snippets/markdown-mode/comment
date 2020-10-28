@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: comment
+# uuid:
+# key: ;<
+# condition: t
+# --
+<!--- ${0:comment} --->
