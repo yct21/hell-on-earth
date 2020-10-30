@@ -101,7 +101,7 @@
 
 (use-package! org-projectile
   :init
-  (map! :leader :n "pj" #'org-projectile-goto-location-for-project)
+  (map! :leader :n "pj" #'+hoe/projectile-goto-todo)
   :config
   (org-projectile-per-project)
   (setq org-projectile-per-project-filepath "scratch.org")
