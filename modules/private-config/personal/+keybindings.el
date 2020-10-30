@@ -36,6 +36,7 @@
 (map!
  :nve "M-d" #'evil-scroll-down
  :nve "M-u" #'evil-scroll-up
+ :nve "M-q" #'doom/escape
  :ne "M-o" #'evil-jump-backward
  :ni "M-z" #'undo
  :ni "M-k" #'company-tabnine-call-other-backends
