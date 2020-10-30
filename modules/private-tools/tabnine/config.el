@@ -46,8 +46,8 @@
   :config
   (setq +lsp-company-backend 'company-capf)
   (setq company-frontends '(company-pseudo-tooltip-frontend))
-  (setq company-idle-delay 0
-        company-minimum-prefix-length 0
+  (setq company-idle-delay 0.2
+        company-minimum-prefix-length 1
         company-show-numbers t)
   )
 
