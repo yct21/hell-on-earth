@@ -2,6 +2,7 @@
 
 (when (featurep! +keybindings) (load! "+keybindings"))
 (when (featurep! +mru-workspace) (load! "+mru-workspace"))
+(load! "+workarounds")
 
 (after! ivy
   (define-key ivy-minibuffer-map (kbd "M-l") #'ivy-alt-done)
@@ -171,7 +172,7 @@
 (setq! link-hint-avy-all-windows t)
 
 
-(setq doom-theme 'doom-nova)
+(setq doom-theme 'doom-henna)
 
 (after! magit-todo
   (add-to-list 'magit-todos-keywords-list "todo!")
@@ -185,4 +186,4 @@
 (add-to-list 'auto-mode-alist '("\\.pkgfile\\'" . sh-mode))
 
 ;;; opacity
-(modify-frame-parameters nil `((alpha  97)))
+(modify-frame-parameters nil `((alpha  98)))

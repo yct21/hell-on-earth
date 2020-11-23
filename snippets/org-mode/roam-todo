@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: roam-todo
+# key: ;todo
+# condition: t
+# --
+
+#+TODO: TODO

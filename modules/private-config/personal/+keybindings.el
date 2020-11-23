@@ -34,13 +34,20 @@
 ;;
 ;;; Global keybindings
 (map!
+ :n "M" #'bookmark-set
+ :n "m" #'counsel-projectile-bookmark
  :nve "M-d" #'evil-scroll-down
  :nve "M-u" #'evil-scroll-up
- :nve "M-q" #'doom/escape
+ :nvei "M-q" #'doom/escape
  :ne "M-o" #'evil-jump-backward
  :ni "M-z" #'undo
- :ni "M-k" #'company-tabnine-call-other-backends
+ :i "M-k" #'company-tabnine-call-other-backends
  :ni "M-c" #'evil-yank
+ :ne "C-g" #'magit-status
+ :n  "C-h" (cmd!
+            (unless (equal persp-last-persp-name "observatory")
+              (persp-switch "observatory"))
+            (org-roam-find-file))
  :i "C-h"     (cmd! (progn
                       (newline)
                       (newline)
@@ -49,10 +56,8 @@
                       (indent-according-to-mode)))
  :ni "M-i" #'yankpad-insert
  :i "M-v" #'yank
- :ni "C-k" (cmd! (end-of-line)
-                 (newline))
  :ni "M-w" #'delete-window
- :ni "M-p" (cmd! (progn (counsel-projectile-switch-project) (delete-other-windows)))
+ :ni "M-p" (cmd! (progn ( counsel-projectile-switch-project) (delete-other-windows)))
  :ni "M-f" #'counsel-git
  :ni "C-e" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
@@ -88,8 +93,11 @@
 
       (:after org-super-agenda
        :map evil-org-agenda-mode-map
-       :m "F" #'avy-goto-line
-       :m "p" #'org-priority
+       :mn "F" #'avy-goto-line
+       :mn "f" #'evil-avy-goto-char-timer
+       :mn "/" #'evil-ex-search-forward
+       :mn "p" #'org-priority
+       :mn "M-n" #'hoe-peregrine/create-task
        )
       (:after help :map help-mode-map
        :n "o"       #'link-hint-open-link)
@@ -147,7 +155,7 @@
 (map!
  :ni "C-`" (cmd! (org-agenda nil "t"))
  :ni "M-`" #'hoe-peregrine/create-task
- :ni "C-h" (cmd!
+ :ni "C-j" (cmd!
             (unless (equal persp-last-persp-name "observatory")
               (persp-switch "observatory"))
             (org-roam-find-file))
@@ -155,14 +163,11 @@
   "C-i" #'org-insert-heading)
 
  (:map org-mode-map
+  :ni "C-f" #'hoe-observatory/insert-footnote
   :ni "M-y" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org
   :ni "M-i" #'org-roam-insert
   :n  "C-t" #'hoe-observatory/insert-tag
   :ni "C-o" #'link-hint-open-link
-  :ni "C-h" (cmd!
-              (unless (equal persp-last-persp-name "observatory")
-                (persp-switch "observatory"))
-              (org-roam-find-file))
 
   :localleader
   :n "p" #'org-priority

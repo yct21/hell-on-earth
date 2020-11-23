@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: roam-tags
+# key: ;t
+# condition: t
+# --
+
+#+ROAM_TAGS: $0

@@ -2,6 +2,10 @@
   (setq rustic-lsp-server 'rust-analyzer)
   (setq lsp-rust-analyzer-server-command "~/.local/bin/rust-analyzer")
   (setq lsp-rust-server 'rust-analyzer)
+
+  (setq lsp-rust-show-hover-context nil)
+  (setq lsp-rust-analyzer-server-display-inlay-hints t)
+  (setq lsp-rust-analyzer-display-chaining-hints t)
   )
 
 (after! rustic

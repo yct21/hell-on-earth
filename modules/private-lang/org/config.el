@@ -9,7 +9,7 @@
   ;; ♥ ● ◇ ✚ ✜ ☯ ◆ ♠ ♣ ♦ ☢ ❀ ◆ ◖ ▶ ✿ "❀"
   ;; (setq org-bullets-bullet-list '("✸" "✿" "◉" "○" "●" "◇"))
   (setq org-attach-id-dir "~/resources/org-attachments")
- 
+
   (setq org-todo-keywords
         (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)" "OB(r)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
@@ -57,6 +57,8 @@
            :tag "study")
           (:name "Side project"
            :tag "side_project")
+          (:name "Collection"
+           :tag "collection")
           (:name "Utilities"
            :tag "utility")
           (:name "Personal"

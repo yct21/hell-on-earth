@@ -25,3 +25,12 @@
     :action #'insert
     )
   )
+
+;;;###autoload
+(defun hoe-observatory/insert-footnote (footnote-description)
+  (interactive "sFootnote description: ")
+  (let ((footnote (s-dashed-words footnote-description)))
+    (insert (format "[fn:%s] " footnote))
+    (+insert-chrome-url/insert-chrome-current-tab-url-in-org footnote-description)
+    )
+  )

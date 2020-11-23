@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: foot-not
+# key: ;fn
+# condition: t
+# --
+
+[fn:$1] $0

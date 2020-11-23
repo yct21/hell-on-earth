@@ -1,11 +1,12 @@
 # -*- mode: snippet -*-
 # name: test-module
-# uuid:
 # key: ;test-module
 # condition: t
 # --
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     $0
 }

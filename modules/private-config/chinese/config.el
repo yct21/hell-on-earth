@@ -13,7 +13,7 @@
 
 (use-package! sis
   :hook
-   (((text-mode prog-mode) . sis-follow-context-mode)
+   (((text-mode prog-mode) . sis-context-mode)
    ((text-mode prog-mode) . sis-inline-mode))
   :config
 (sis-ism-lazyman-config

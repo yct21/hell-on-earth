@@ -35,6 +35,7 @@
        electric
        (ibuffer +icons)
        vc
+       (undo +tree)
 
        :checkers
        syntax
@@ -83,6 +84,7 @@
         +keybindings
         +mru-workspace)
        chinese
+       startup
        disable-mouse
 
        :private-lang
@@ -108,6 +110,7 @@
        anywhere
        observatory
        leetcode
+       lsp
        tabnine
        ;; pullover
 

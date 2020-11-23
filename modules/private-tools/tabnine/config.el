@@ -48,9 +48,10 @@
   (setq company-frontends '(company-pseudo-tooltip-frontend))
   (setq company-idle-delay 0.2
         company-minimum-prefix-length 1
+        company-tabnine-use-native-json nil
         company-show-numbers t)
   )
 
-  (set-company-backend! 'tide-mode '(company-tide :with company-tabnine :separate))
+(set-company-backend! 'tide-mode '(company-tide :with company-tabnine :separate))
 (after! tide
   )
