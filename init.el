@@ -27,6 +27,7 @@
        file-templates
        fold
        format
+       multiple-cursors
        snippets
        word-wrap
 
@@ -47,7 +48,7 @@
        (debugger +lsp)
        (lookup +docsets)
        magit
-       lsp
+       (lsp +peek)
        taskrunner
        upload
 
@@ -62,8 +63,9 @@
        (kotlin +lsp)
        javascript
        (markdown +pandoc)
-       (org +gnuplot +pandoc +present +pretty)
+       (org +gnuplot +pandoc +present +pretty +pomodoro)
        plantuml
+       racket
        ruby
        rest
        swift
@@ -117,6 +119,8 @@
        :private-ui
        ;; neutral-title-bar
        ;; page-break-line
+       ;; mini-modeline
+       header-line
 
        :private-feature
        evil

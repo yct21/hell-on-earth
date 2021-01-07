@@ -3,6 +3,7 @@
 (when (featurep! +keybindings) (load! "+keybindings"))
 (when (featurep! +mru-workspace) (load! "+mru-workspace"))
 (load! "+workarounds")
+(load! "+bookmark")
 
 (after! ivy
   (define-key ivy-minibuffer-map (kbd "M-l") #'ivy-alt-done)
@@ -12,26 +13,6 @@
 
 ;; (after! avy
 ;;   (setq avy-all-windows 'all-frames))
-
-(defun +workspace-list-names-limited ()
-  (let* ((names (+workspace-list-names))
-         (substracted-names (seq-subseq names 0 (min 5 (length names))))
-         (current-name (+workspace-current-name)))
-    (mapconcat
-     #'identity
-     (cl-loop for i to (length substracted-names)
-              for name in substracted-names
-              collect
-              (propertize (format " [%d] %s " (1+ i) name)
-                          'face (if (equal current-name name)
-                                    '+workspace-tab-selected-face
-                                  '+workspace-tab-face)))
-     " ")))
-
-(setq-default frame-title-format
-              '("Visual Studio Code  |  "
-                (:eval (+workspace-list-names-limited))
-                ))
 
 (after! typescript-mode
   (setq typescript-indent-level 2))
@@ -144,8 +125,9 @@
       '("~/doc"
         "~/code/hub"
         "~/code/side-projects"
-        "~/code/side-projects/mockingbird"
         "~/code/docker"
+        "~/code/scripts"
+        "~/code/templates"
         "~/code/nokia"
         "~/code/nokia/pr-analysis"
         "~/code/playgrounds/leetcode-rust"
@@ -168,13 +150,11 @@
 
 ;;; lint hint
 
-
 (setq! link-hint-avy-all-windows t)
 
+(setq doom-theme 'doom-challenger-deep)
 
-(setq doom-theme 'doom-henna)
-
-(after! magit-todo
+(after! magit-todos
   (add-to-list 'magit-todos-keywords-list "todo!")
   )
 

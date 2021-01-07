@@ -44,6 +44,7 @@
  :i "M-k" #'company-tabnine-call-other-backends
  :ni "M-c" #'evil-yank
  :ne "C-g" #'magit-status
+ :ni "M-l" #'evil-window-mru
  :n  "C-h" (cmd!
             (unless (equal persp-last-persp-name "observatory")
               (persp-switch "observatory"))
@@ -151,9 +152,15 @@
 ;;
 ;;; Module keybinds
 
+
 ;;; org mode
 (map!
- :ni "C-`" (cmd! (org-agenda nil "t"))
+ :n   "C-`" (cmd!
+             (unless (equal persp-last-persp-name "peregrine")
+               (persp-switch "peregrine"))
+              (org-agenda nil "t")
+              (evil-goto-first-line)
+              )
  :ni "M-`" #'hoe-peregrine/create-task
  :ni "C-j" (cmd!
             (unless (equal persp-last-persp-name "observatory")
@@ -290,6 +297,7 @@
        :n "C-t"   #'+workspace/new
        :g "M-1"   (cmd! (persp-switch "peregrine"))
        :g "M-2"   #'+workspace/switch-to-1
+       :g "C-l"   #'+workspace/switch-to-1
        :g "M-3"   #'+workspace/switch-to-2
        :g "M-4"   #'+workspace/switch-to-3
        :g "M-5"   #'+workspace/switch-to-4

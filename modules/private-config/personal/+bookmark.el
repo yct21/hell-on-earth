@@ -22,10 +22,11 @@
                                  (bookmark-set x))))
                 :caller 'counsel-projectile-bookmark)))
 
+(after! ivy
   (ivy-set-actions
    'counsel-projectile-bookmark
-   '(("d" bookmark-delete "delete")
-     ("e" bookmark-rename "edit")))
+   '(("D" bookmark-delete "delete")
+     ("e" bookmark-rename "edit"))))
 
   (defun projectile-bookmarks ()
     (let ((bmarks (bookmark-all-names)))
