@@ -3,4 +3,9 @@
 ;;;###autoload
 (defun hoe/archive-todo-file ()
   (interactive)
-  (doom/move-this-file "./archived/"))
+  (evil-goto-first-line)
+  (org-todo "DONE")
+  (doom/move-this-file "./archived/")
+  (kill-current-buffer)
+  (kill-current-buffer)
+  )

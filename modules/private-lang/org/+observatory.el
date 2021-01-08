@@ -20,7 +20,7 @@
 (defun hoe-observatory/insert-tag ()
   (interactive)
   (insert " ")
-  (ivy-read "Insert tag"
+  (ivy-read "Insert tag: "
     hoe/observatory-tags
     :action #'insert
     )

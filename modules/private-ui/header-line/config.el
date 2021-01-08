@@ -48,7 +48,7 @@
       (cl-loop for i to (length substracted-names)
                for name in substracted-names
                collect
-               (format "[%d] %s" (1+ i) name)
+               (format "<%d>%s" (1+ i) name)
                )
       " ")
      ;; 'face 'mode-line
@@ -75,19 +75,23 @@
 ;;                 (:eval (+workspace-list-names-limited))
 ;;                 ))
 
-(defun hoe/header-line-right ()
+(defun hoe/header-line-left ()
   (if (eq org-pomodoro-state :pomodoro)
       '("" org-clock-heading " " org-pomodoro-mode-line)
     (if (eq org-pomodoro-state :none)
-        '("          ")
+        '("-- ")
       '("break " org-pomodoro-mode-line))))
+
+(defun hoe/header-line-right ()
+  (+workspace-list-names-limited)
+  )
 
 (setq-default hoe/header-line-format
               '(" ✎ "
-                (:eval (+workspace-list-names-limited))
-                (:eval
-                 (mode-line-fill-right 'mode-line
-                                       (reserve-middle/right)))
+                (:eval (hoe/header-line-left))
+                ;; (:eval
+                ;;  (mode-line-fill-right 'mode-line
+                ;;                        (reserve-middle/right)))
                 (:eval (hoe/header-line-right))
                 ;; org-pomodoro-mode-line
                 ;; (org-clock-get-clock-string)

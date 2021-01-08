@@ -98,7 +98,6 @@
        :mn "f" #'evil-avy-goto-char-timer
        :mn "/" #'evil-ex-search-forward
        :mn "p" #'org-priority
-       :mn "M-n" #'hoe-peregrine/create-task
        )
       (:after help :map help-mode-map
        :n "o"       #'link-hint-open-link)
@@ -155,12 +154,7 @@
 
 ;;; org mode
 (map!
- :n   "C-`" (cmd!
-             (unless (equal persp-last-persp-name "peregrine")
-               (persp-switch "peregrine"))
-              (org-agenda nil "t")
-              (evil-goto-first-line)
-              )
+ :n   "C-`" #'hoe-peregrine/switch-to-agenda
  :ni "M-`" #'hoe-peregrine/create-task
  :ni "C-j" (cmd!
             (unless (equal persp-last-persp-name "observatory")
@@ -378,17 +372,7 @@
 
       :desc "Jump to bookmark"      "RET"  #'bookmark-jump
 
-      ;;; <leader> l --- workspace
-      (:when (featurep! :ui workspaces)
-       (:prefix-map ("l" . "workspace")
-        :desc "Switch workspace"          "l"   #'+workspace/switch-to
-        :desc "New workspace"             "n"   #'+workspace/new
-        ;; :desc "Load workspace from file"  "l"   #'+workspace/load
-        :desc "Save workspace to file"    "s"   #'+workspace/save
-        :desc "Delete session"            "x"   #'+workspace/kill-session
-        :desc "Delete this workspace"     "d"   #'+workspace/delete
-        :desc "Rename workspace"          "r"   #'+workspace/rename
-        :desc "Restore last session"      "R"   #'+workspace/restore-last-session))
+      ;;; <leader> l --- peregrine list
 
       ;;; <leader> b --- buffer
       (:prefix-map ("b" . "buffer")
@@ -552,9 +536,10 @@
        :desc "Switch to note buffer"        "b" #'org-roam-switch-to-buffer
        :desc "org roam mode"                "r" #'org-roam
        :desc "Browse notes"                 "F" #'+default/browse-notes
+       :desc "Peregrine list"               "p"      #'hoe-peregrine/switch-from-list
        :desc "Org store link"               "l" #'org-store-link
        :desc "Tags search"                  "m" #'org-tags-view
-       :desc "Org capture"                  "n" #'org-capture
+       :desc "new note"                     "n" #'hoe-peregrine/create-task
        :desc "Active org-clock"             "o" #'org-clock-goto
        :desc "Todo list"                    "t" #'org-todo-list
        :desc "Search notes"                 "s" #'+default/org-notes-search

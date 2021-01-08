@@ -14,7 +14,7 @@
        modeline
        nav-flash
        ophints
-       (popup +all +defaults)
+       (popup +defaults)
        (ligatures +fira)
        ;; unicode
        vc-gutter

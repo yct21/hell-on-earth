@@ -11,7 +11,7 @@
   (setq org-attach-id-dir "~/resources/org-attachments")
 
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "SHORT-LIST(s)" "NOW(n)" "DONE(D!/!)" "OB(r)")
+        (quote ((sequence "TODO(t)" "LIST(l)" "DONE(D!/!)" "OB(r)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
   (setq +org-capture-todo-file (expand-file-name "quick-notes.org" hoe/peregrine)
         +org-capture-notes-file (expand-file-name "quick-notes.org" hoe/peregrine)
@@ -27,8 +27,7 @@
         org-superstar-todo-bullet-alist
         '(("TODO" . 9744)
           ("[ ]"  . 9744)
-          ("NOW" . 9744)
-          ("SHORT-LIST" . 9744)
+          ("LIST" . 9744)
           ("DONE" . 9745)
           ("[X]"  . 9745))
         ))
@@ -40,10 +39,8 @@
   (setq org-agenda-files (list hoe/peregrine))
 
   (setq org-super-agenda-groups
-        '((:name "Now"
-           :todo "NOW")
-          (:name "Short List"
-           :todo "SHORT-LIST")
+        '((:name "Short List"
+           :todo "LIST")
           (:name "Important"
            :priority "A")
           (:priority "C"
@@ -126,3 +123,4 @@
 (setq org-attach-id-dir "~/doc/org-attachments")
 
 (load! "+observatory")
+(load! "+pomodoro")
