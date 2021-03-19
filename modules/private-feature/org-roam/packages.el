@@ -1,3 +1,9 @@
 ;;; private-feature/org-roam/package.el -*- lexical-binding: t; -*-
 
-(package! org-roam :pin "87d7c07e87")
+(package! org-roam)
+(package! org-roam-server)
+
+(use-package! org-roam-server
+  :config
+  (setq org-roam-server-port 2020)
+  )

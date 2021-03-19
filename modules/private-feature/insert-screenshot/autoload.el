@@ -25,10 +25,10 @@
         (call-process "screencapture" nil nil nil "-s" final-image-full-path)
         (if (executable-find "convert")
             (progn
-              (setq resize-command-str (format "convert %s -resize 800x600 %s" final-image-full-path final-image-full-path))
+              (setq resize-command-str (format "convert %s -resize 1024x720 %s" final-image-full-path final-image-full-path))
               (shell-command-to-string resize-command-str)))
-        (insert "#+attr_html: :width 500px\n")
-        (insert "#+attr_latex: :width 500px\n")
+        (insert "#+attr_html: :width 1024\n")
+        (insert "#+attr_latex: :width 1024\n")
         (hoe//insert-org-or-md-img-link "./assets/" relativepath))
     (progn
       (call-process "screencapture" nil nil nil "-s" (concat basename ".png"))

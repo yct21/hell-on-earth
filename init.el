@@ -55,6 +55,7 @@
        :lang
        agda
        (cc +lsp)
+       (csharp +lsp)
        data
        emacs-lisp
        (go +lsp)
@@ -68,6 +69,7 @@
        racket
        ruby
        rest
+       scala
        swift
        sh
        web

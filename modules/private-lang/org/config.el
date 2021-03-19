@@ -113,10 +113,6 @@
   :autosave t
   )
 
-(use-package! org-roam-server
-  :config
-  (setq org-roam-server-port 2020)
-  )
 
 ;;; org-attach
 (setq org-attach-dir "~/doc/org-attachments")
@@ -124,3 +120,4 @@
 
 (load! "+observatory")
 (load! "+pomodoro")
+(load! "+peregrine")

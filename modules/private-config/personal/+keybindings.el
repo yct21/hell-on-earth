@@ -4,12 +4,12 @@
   ;; NOTE SPC u replaces C-u as the universal argument.
 
   ;; Minibuffer
-  (define-key! evil-ex-completion-map
-    "C-a" #'evil-beginning-of-line
-    "C-b" #'evil-backward-char
-    "C-s" (if (featurep! :completion ivy)
-              #'counsel-minibuffer-history
-            #'helm-minibuffer-history))
+  (map! :map (evil-ex-completion-map evil-ex-search-keymap)
+        "C-a" #'evil-beginning-of-line
+        "C-b" #'evil-backward-char
+        "C-f" #'evil-forward-char
+        :gi "C-j" #'next-complete-history-element
+        :gi "C-k" #'previous-complete-history-element)
 
   (define-key! :keymaps +default-minibuffer-maps
     [escape] #'abort-recursive-edit
@@ -45,7 +45,7 @@
  :ni "M-c" #'evil-yank
  :ne "C-g" #'magit-status
  :ni "M-l" #'evil-window-mru
- :n  "C-h" (cmd!
+ :n  "M-g" (cmd!
             (unless (equal persp-last-persp-name "observatory")
               (persp-switch "observatory"))
             (org-roam-find-file))
@@ -65,27 +65,28 @@
  :ni "C-f" #'+format/buffer)
 
 ;; Smart tab, these will only work in GUI Emacs
-(map! :i [tab] (general-predicate-dispatch nil ; fall back to nearest keymap
-                 (and (featurep! :editor snippets)
-                      (bound-and-true-p yas-minor-mode)
-                      (yas-maybe-expand-abbrev-key-filter 'yas-expand))
-                 #'yas-expand
-                 (and (featurep! :completion company +tng)
-                      (+company-has-completion-p))
-                 #'+company/complete)
-      :n [tab] (general-predicate-dispatch nil
-                 (and (featurep! :editor fold)
-                      (save-excursion (end-of-line) (invisible-p (point))))
-                 #'+fold/toggle
-                 (fboundp 'evil-jump-item)
-                 #'evil-jump-item)
-      :v [tab] (general-predicate-dispatch nil
-                 (and (bound-and-true-p yas-minor-mode)
-                      (or (eq evil-visual-selection 'line)
-                          (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
-                 #'yas-insert-snippet
-                 (fboundp 'evil-jump-item)
-                 #'evil-jump-item)
+(map! :i [tab] (cmds! (and (featurep! :editor snippets)
+                           (bound-and-true-p yas-minor-mode)
+                           (yas-maybe-expand-abbrev-key-filter 'yas-expand))
+                      #'yas-expand
+                      (featurep! :completion company +tng)
+                      #'company-indent-or-complete-common)
+      :m [tab] (cmds! (and (bound-and-true-p yas-minor-mode)
+                           (evil-visual-state-p)
+                           (or (eq evil-visual-selection 'line)
+                               (not (memq (char-after) (list ?\( ?\[ ?\{ ?\} ?\] ?\))))))
+                      #'yas-insert-snippet
+                      (and (featurep! :editor fold)
+                           (save-excursion (end-of-line) (invisible-p (point))))
+                      #'+fold/toggle
+                      ;; Fixes #4548: without this, this tab keybind overrides
+                      ;; mode-local ones for modes that don't have an evil
+                      ;; keybinding scheme or users who don't have :editor (evil
+                      ;; +everywhere) enabled.
+                      (doom-lookup-key [tab] (list (current-local-map)))
+                      it
+                      (fboundp 'evil-jump-item)
+                      #'evil-jump-item)
 
       ;; Smarter newlines
       :i [remap newline] #'newline-and-indent  ; auto-indent on newline
@@ -133,13 +134,12 @@
        :nv "P" #'evil-mc-make-and-goto-first-cursor
        :nv "q" #'evil-mc-undo-all-cursors
        :nv "t" #'+multiple-cursors/evil-mc-toggle-cursors
-       :nv "u" #'evil-mc-undo-last-added-cursor
-       :nv "z" #'+multiple-cursors/evil-mc-make-cursor-here
+       :nv "u" #'+multiple-cursors/evil-mc-undo-cursor
+       :nv "z" #'+multiple-cursors/evil-mc-toggle-cursor-here
        :v  "I" #'evil-mc-make-cursor-in-visual-selection-beg
        :v  "A" #'evil-mc-make-cursor-in-visual-selection-end)
 
       ;; misc
-      :n "C-S-f"  #'toggle-frame-fullscreen
       :n "C-+"    #'doom/reset-font-size
       ;; Buffer-local font resizing
       :n "C-="    #'text-scale-increase
@@ -154,7 +154,7 @@
 
 ;;; org mode
 (map!
- :n   "C-`" #'hoe-peregrine/switch-to-agenda
+ :n   "M-e" #'hoe-peregrine/switch-to-agenda
  :ni "M-`" #'hoe-peregrine/create-task
  :ni "C-j" (cmd!
             (unless (equal persp-last-persp-name "observatory")
@@ -218,6 +218,7 @@
                            (indent-according-to-mode)))
          "C-u"     #'company-previous-page
          "C-d"     #'company-next-page
+         "C-o"     #'company-show-doc-buffer
          "C-s"     #'company-filter-candidates
          "C-l"     #'company-complete-selection
          "C-S-s"   (cond ((featurep! :completion helm) #'helm-company)
@@ -229,7 +230,7 @@
          "C-p"     #'company-select-previous-or-abort
          "C-j"     #'company-select-next-or-abort
          "C-k"     #'company-select-previous-or-abort
-         "C-s"     (λ! (company-search-abort) (company-filter-candidates))
+         "C-s"     #'company-filter-candidates
          [escape]  #'company-search-abort))
        ;; TAB auto-completion in term buffers
        (:after comint :map comint-mode-map
@@ -306,7 +307,8 @@
        :n "gQ" #'+format:region)
 
       (:when (featurep! :editor rotate-text)
-       :n "!"  #'rotate-text)
+       :n "]r"  #'rotate-text
+       :n "[r"  #'rotate-text-backward)
 
       (:when (featurep! :editor multiple-cursors)
        ;; evil-multiedit
@@ -350,6 +352,7 @@
 (map! :leader
       (:desc "Other buffer" :n [tab] #'projectile-project-buffers-other-buffer)
       (:desc "Switch workspace buffer" :n "SPC" #'+ivy/switch-workspace-buffer)
+      (:desc "Switch workspace" :n "." #'+workspace/switch-to)
 
       :desc "Eval expression"       ";"    #'pp-eval-expression
       :desc "M-x"                   ":"    #'execute-extended-command
@@ -411,6 +414,7 @@
        :desc "Recompile"                             "C"   #'recompile
        :desc "Jump to definition"                    "d"   #'+lookup/definition
        :desc "Jump to references"                    "D"   #'+lookup/references
+       :desc "Find type definition"                  "t"   #'+lookup/type-definition
        :desc "Evaluate buffer/region"                "e"   #'+eval/buffer-or-region
        :desc "Evaluate & replace region"             "E"   #'+eval:replace-region
        :desc "Format buffer/region"                  "f"   #'+format/region-or-buffer
@@ -441,10 +445,8 @@
       (:prefix-map ("f" . "file")
        :desc "Open project editorconfig"   "c"   #'editorconfig-find-current-editorconfig
        :desc "Copy this file"              "C"   #'doom/copy-this-file
-       :desc "Find directory"              "d"   #'dired
+       :desc "Find directory"              "d"   #'+default/dired
        :desc "Delete this file"            "D"   #'doom/delete-this-file
-       :desc "Find file in emacs.d"        "e"   #'+default/find-in-emacsd
-       :desc "Browse emacs.d"              "E"   #'+default/browse-emacsd
        :desc "Find file"                   "f"   #'find-file
        :desc "Find file from here"         "F"   #'+default/find-file-under-here
        :desc "Locate file"                 "l"   #'locate
@@ -456,8 +458,8 @@
        :desc "Save file as..."             "S"   #'write-file
        :desc "Sudo find file"              "u"   #'doom/sudo-find-file
        :desc "Sudo this file"              "U"   #'doom/sudo-this-file
-       :desc "Yank filename"               "y"   #'+default/yank-buffer-filename)
-
+       :desc "Yank file path"              "y"   #'+default/yank-buffer-path
+       :desc "Yank file path from project" "Y"   #'+default/yank-buffer-path-relative-to-project)
       ;;; <leader> g --- git/version control
       (:prefix-map ("g" . "git")
        :desc "Revert file"                 "R"   #'vc-revert
@@ -531,12 +533,11 @@
        :desc "Search notes for symbol"      "*" #'+default/search-notes-for-symbol-at-point
        :desc "Org agenda"                   "a" #'org-agenda
        :desc "Open deft"                    "d" #'deft
-       :desc "Find file in notes"           "f" #'org-roam-find-file
        :desc "Insert note link"             "i" #'org-roam-insert
        :desc "Switch to note buffer"        "b" #'org-roam-switch-to-buffer
        :desc "org roam mode"                "r" #'org-roam
        :desc "Browse notes"                 "F" #'+default/browse-notes
-       :desc "Peregrine list"               "p"      #'hoe-peregrine/switch-from-list
+       :desc "Peregrine list"               "f"      #'hoe-peregrine/switch-from-list
        :desc "Org store link"               "l" #'org-store-link
        :desc "Tags search"                  "m" #'org-tags-view
        :desc "new note"                     "n" #'hoe-peregrine/create-task
@@ -590,7 +591,7 @@
        (:when (featurep! :term eshell)
         :desc "Toggle eshell popup"   "e" #'+eshell/toggle
         :desc "Open eshell here"      "E" #'+eshell/here)
-       (:when (featurep! :tools macos)
+       (:when (featurep! :os macos)
         :desc "Reveal in Finder"           "o" #'+macos/reveal-in-finder
         :desc "Reveal project in Finder"   "O" #'+macos/reveal-project-in-finder
         :desc "Send to Transmit"           "u" #'+macos/send-to-transmit
@@ -675,14 +676,16 @@
        :desc "Search project"               "p" #'+default/search-project
        :desc "Search other project"         "P" #'+default/search-other-project
        :desc "Jump to mark"                 "r" #'evil-show-marks
-       :desc "Search buffer"                "s" #'swiper-isearch
+       :desc "Search buffer"                "s" #'+default/search-buffer
        :desc "Search buffer for thing at point" "S" #'swiper-isearch-thing-at-point
        :desc "Dictionary"                   "t" #'+lookup/dictionary-definition
        :desc "Thesaurus"                    "T" #'+lookup/synonyms)
 
-      ;;; <leader> t --- toggle
+ ;;; <leader> t --- toggle
       (:prefix-map ("t" . "toggle")
        :desc "Big mode"                     "b" #'doom-big-font-mode
+       (:when (featurep! :ui fill-column)
+        :desc "Fill Column Indicator"       "c" #'+fill-column/toggle)
        :desc "Flymake"                      "f" #'flymake-mode
        (:when (featurep! :checkers syntax)
         :desc "Flycheck"                   "f" #'flycheck-mode)
@@ -692,18 +695,22 @@
         :desc "Indent guides"              "i" #'highlight-indent-guides-mode)
        :desc "Indent style"                 "I" #'doom/toggle-indent-style
        :desc "Line numbers"                 "l" #'doom/toggle-line-numbers
+       (:when (featurep! :ui minimap)
+        :desc "Minimap"                      "m" #'minimap-mode)
        (:when (featurep! :lang org +present)
         :desc "org-tree-slide mode"        "p" #'org-tree-slide-mode)
        :desc "Read-only mode"               "r" #'read-only-mode
-       (:when (featurep! :checkers spell)
-        :desc "Flyspell"                   "s" #'flyspell-mode)
+       (:when (and (featurep! :checkers spell) (not (featurep! :checkers spell +flyspell)))
+        :desc "Spell checker"              "s" #'spell-fu-mode)
+       (:when (featurep! :checkers spell +flyspell)
+        :desc "Spell checker"              "s" #'flyspell-mode)
        (:when (featurep! :lang org +pomodoro)
         :desc "Pomodoro timer"             "t" #'org-pomodoro)
        :desc "Soft line wrapping"           "w" #'visual-line-mode
-       (:when (featurep! :ui word-wrap)
+       (:when (featurep! :editor word-wrap)
         :desc "Soft line wrapping"         "w" #'+word-wrap-mode)
-       :desc "Zen mode"                     "z" #'writeroom-mode))
-
+       (:when (featurep! :ui zen)
+        :desc "Zen mode"                   "z" #'writeroom-mode)))
 (after! which-key
   (let ((prefix-re (regexp-opt (list doom-leader-key doom-leader-alt-key))))
     (cl-pushnew `((,(format "\\`\\(?:C-w\\|%s w\\) m\\'" prefix-re))

@@ -33,5 +33,5 @@
 
 (defun hoe-peregrine/switch-from-list ()
   (interactive)
-  (+ivy:project-search "\\* LIST")
+  (+ivy:project-search "\\* LIST ")
   )

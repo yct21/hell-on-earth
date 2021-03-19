@@ -4,6 +4,8 @@
 (when (featurep! +mru-workspace) (load! "+mru-workspace"))
 (load! "+workarounds")
 (load! "+bookmark")
+(load! "+menubar")
+(load! "+tempscript")
 
 (after! ivy
   (define-key ivy-minibuffer-map (kbd "M-l") #'ivy-alt-done)
@@ -29,7 +31,6 @@
 
       user-mail-address "yct21@12tcy.com"
       user-full-name    "Chutian Yang"
-
       )
 
 ;; deft
@@ -123,6 +124,7 @@
 
 (setq projectile-project-search-path
       '("~/doc"
+        "~/doc/magpie"
         "~/code/hub"
         "~/code/side-projects"
         "~/code/docker"
@@ -152,7 +154,7 @@
 
 (setq! link-hint-avy-all-windows t)
 
-(setq doom-theme 'doom-challenger-deep)
+(setq doom-theme 'doom-outrun-electric)
 
 (after! magit-todos
   (add-to-list 'magit-todos-keywords-list "todo!")
