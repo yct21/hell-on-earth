@@ -26,7 +26,7 @@
                            filename)))
     (find-file filepath)
     (erase-buffer)
-    (insert (format "* TODO %s\n\n** expectation\n\n** logs"
+    (insert (format "* TODO %s\n\n** expectation\n\n** obstacles\n\n** logs"
                     title))
     (evil-goto-first-line)
     ))

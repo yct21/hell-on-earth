@@ -56,17 +56,20 @@
 (setq-default frame-title-format
               '(
                 ;; (:eval (hoe/header-line-left))
+                "Visual Studio Code   |   "
                 (:eval (+workspace-list-names-limited))
-                 (:eval (hoe/header-pomo))
                  "                      "
                 ))
 
 (defun hoe/header-pomo ()
-  (if (eq org-pomodoro-state :pomodoro)
-      '(" |  " org-pomodoro-mode-line " " org-clock-heading )
-    (if (eq org-pomodoro-state :none)
+  (if (boundp 'org-pomodoro-state)
+    (if (eq org-pomodoro-state :pomodoro)
+      '(" |  " org-pomodoro-mode-line " " org-clock-heading)
+      (if (eq org-pomodoro-state :none)
         '(" ")
-      '(" |  " org-pomodoro-mode-line "break"))))
+        '(" |  " org-pomodoro-mode-line "break")))
+    ""
+    ))
 
 ;; (defun hoe/header-line-right ()
 ;;   (+workspace-list-names-limited)

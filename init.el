@@ -5,17 +5,17 @@
        (ivy +prescient +icons +childframe)
 
        :ui
-       deft
        doom
        doom-dashboard
        doom-quit
        hl-todo
        hydra
        modeline
-       nav-flash
+       ;; nav-flash
        ophints
        (popup +defaults)
        (ligatures +fira)
+       treemacs
        ;; unicode
        vc-gutter
        vi-tilde-fringe
@@ -32,7 +32,7 @@
        word-wrap
 
        :emacs
-       (dired +ranger +icons)
+       (dired +icons)
        electric
        (ibuffer +icons)
        vc
@@ -40,6 +40,7 @@
 
        :checkers
        syntax
+       (spell +aspell)
 
        :tools
        editorconfig
@@ -62,16 +63,17 @@
        (haskell +lsp)
        idris
        (kotlin +lsp)
-       javascript
+       (javascript +lsp)
        (markdown +pandoc)
-       (org +gnuplot +pandoc +present +pretty +pomodoro)
+       nix
+       (org +gnuplot +pandoc +present +pretty +dragndrop)
        plantuml
-       racket
        ruby
        rest
        scala
        swift
        sh
+       solidity
        web
        lua
        (rust +lsp)

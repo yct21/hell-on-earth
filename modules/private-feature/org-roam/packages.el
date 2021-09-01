@@ -1,9 +1,7 @@
 ;;; private-feature/org-roam/package.el -*- lexical-binding: t; -*-
 
-(package! org-roam)
-(package! org-roam-server)
+;; (package! org-roam :recipe (:local-repo "/Users/yct21/code/emacs/org-roam"))
 
-(use-package! org-roam-server
-  :config
-  (setq org-roam-server-port 2020)
-  )
+(package! org-roam
+  :recipe (:type git :host github :repo "org-roam/org-roam"))
+;; (package! org-roam-server)

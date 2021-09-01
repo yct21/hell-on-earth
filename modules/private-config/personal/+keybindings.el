@@ -34,6 +34,9 @@
 ;;
 ;;; Global keybindings
 (map!
+ :n   "M-e" #'hoe-peregrine/switch-to-agenda
+ :n   "M-i" (cmd! (unless (equal persp-last-persp-name "magpie")
+                    (persp-switch "magpie")))
  :n "M" #'bookmark-set
  :n "m" #'counsel-projectile-bookmark
  :nve "M-d" #'evil-scroll-down
@@ -48,21 +51,25 @@
  :n  "M-g" (cmd!
             (unless (equal persp-last-persp-name "observatory")
               (persp-switch "observatory"))
-            (org-roam-find-file))
+            (org-roam-node-find))
  :i "C-h"     (cmd! (progn
                       (newline)
                       (newline)
                       (indent-according-to-mode)
                       (previous-line)
                       (indent-according-to-mode)))
- :ni "M-i" #'yankpad-insert
  :i "M-v" #'yank
  :ni "M-w" #'delete-window
- :ni "M-p" (cmd! (progn ( counsel-projectile-switch-project) (delete-other-windows)))
+ :ni "C-p" (cmd! (progn ( counsel-projectile-switch-project) (delete-other-windows)))
+ :ni "M-p" #'+workspace/switch-to
  :ni "M-f" #'counsel-git
  :ni "C-e" #'lsp-execute-code-action
  :ni "M-s" #'save-buffer
  :ni "C-f" #'+format/buffer)
+
+
+;; goto
+;; (map! :i)
 
 ;; Smart tab, these will only work in GUI Emacs
 (map! :i [tab] (cmds! (and (featurep! :editor snippets)
@@ -154,21 +161,16 @@
 
 ;;; org mode
 (map!
- :n   "M-e" #'hoe-peregrine/switch-to-agenda
- :ni "M-`" #'hoe-peregrine/create-task
  :ni "C-j" (cmd!
             (unless (equal persp-last-persp-name "observatory")
               (persp-switch "observatory"))
             (org-roam-find-file))
- (:map evil-org-mode-map
-  "C-i" #'org-insert-heading)
 
  (:map org-mode-map
-  :ni "C-f" #'hoe-observatory/insert-footnote
   :ni "M-y" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org
-  :ni "M-i" #'org-roam-insert
-  :n  "C-t" #'hoe-observatory/insert-tag
   :ni "C-o" #'link-hint-open-link
+  :nvi "C-i" #'org-roam-node-insert
+  :ni "C-h" #'org-insert-subheading
 
   :localleader
   :n "p" #'org-priority
@@ -186,6 +188,7 @@
 ;;; avy
 (map!
  (:after avy
+  :nv "t" #'avy-goto-char-in-line
   :nv "f" #'avy-goto-char
   :nv "F" #'avy-goto-line))
 
@@ -530,26 +533,19 @@
 
       ;;; <leader> n --- notes
       (:prefix-map ("n" . "notes")
-       :desc "Search notes for symbol"      "*" #'+default/search-notes-for-symbol-at-point
-       :desc "Org agenda"                   "a" #'org-agenda
-       :desc "Open deft"                    "d" #'deft
-       :desc "Insert note link"             "i" #'org-roam-insert
-       :desc "Switch to note buffer"        "b" #'org-roam-switch-to-buffer
-       :desc "org roam mode"                "r" #'org-roam
-       :desc "Browse notes"                 "F" #'+default/browse-notes
-       :desc "Peregrine list"               "f"      #'hoe-peregrine/switch-from-list
-       :desc "Org store link"               "l" #'org-store-link
-       :desc "Tags search"                  "m" #'org-tags-view
+       ;; :desc "Search notes for symbol"      "*" #'+default/search-notes-for-symbol-at-point
+       ;; :desc "Org agenda"                   "a" #'org-agenda
+       ;; :desc "Open deft"                    "d" #'deft
+       ;; :desc "Insert note link"             "i" #'org-roam-insert
+       ;; :desc "Switch to note buffer"        "b" #'org-roam-switch-to-buffer
+       ;; :desc "org roam mode"                "r" #'org-roam
+       ;; :desc "Browse notes"                 "F" #'+default/browse-notes
+       :desc "Peregrine list"               "f" #'hoe-peregrine/switch-from-list
+       :desc "org id get"                   "i" #'org-id-get-create
+       :desc "hide properties"              "h" #'hoe-observatory/org-hide-properties-display
        :desc "new note"                     "n" #'hoe-peregrine/create-task
-       :desc "Active org-clock"             "o" #'org-clock-goto
-       :desc "Todo list"                    "t" #'org-todo-list
-       :desc "Search notes"                 "s" #'+default/org-notes-search
-       :desc "Search org agenda headlines"  "S" #'+default/org-notes-headlines
-       :desc "Roam graph for current node"  "g" (cmd! (org-roam-graph-show-connected-component 1))
-       :desc "Roam graph for current node"  "G" #'org-roam-graph-show
-       :desc "View search"                  "v" #'org-search-view
-       :desc "Org export to clipboard"        "y" #'+org/export-to-clipboard
-       :desc "Org export to clipboard as RTF" "Y" #'+org/export-to-clipboard-as-rich-text
+       :desc "narrow to subtree"            "s" #'org-narrow-to-subtree
+       :desc "widen"                        "S" #'widen
 
        (:when (featurep! :lang org +journal)
         (:prefix ("j" . "journal")
@@ -704,8 +700,7 @@
         :desc "Spell checker"              "s" #'spell-fu-mode)
        (:when (featurep! :checkers spell +flyspell)
         :desc "Spell checker"              "s" #'flyspell-mode)
-       (:when (featurep! :lang org +pomodoro)
-        :desc "Pomodoro timer"             "t" #'org-pomodoro)
+       :desc "Pomodoro timer"             "t" #'hoe/start-pomo
        :desc "Soft line wrapping"           "w" #'visual-line-mode
        (:when (featurep! :editor word-wrap)
         :desc "Soft line wrapping"         "w" #'+word-wrap-mode)

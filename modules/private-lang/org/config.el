@@ -11,7 +11,7 @@
   (setq org-attach-id-dir "~/resources/org-attachments")
 
   (setq org-todo-keywords
-        (quote ((sequence "TODO(t)" "LIST(l)" "DONE(D!/!)" "OB(r)")
+        (quote ((sequence "TODO(t)" "LIST(l)" "DONE(D!/!)")
                 (sequence "CANCELLED(C@/!)" "BLOCKED(b@/!)" "SOMEDAY(S)"))))
   (setq +org-capture-todo-file (expand-file-name "quick-notes.org" hoe/peregrine)
         +org-capture-notes-file (expand-file-name "quick-notes.org" hoe/peregrine)

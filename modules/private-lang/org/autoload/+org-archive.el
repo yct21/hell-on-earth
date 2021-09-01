@@ -7,5 +7,5 @@
   (org-todo "DONE")
   (doom/move-this-file "./archived/")
   (kill-current-buffer)
-  (kill-current-buffer)
+  (hoe-peregrine/switch-to-agenda)
   )

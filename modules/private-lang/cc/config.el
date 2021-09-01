@@ -33,8 +33,6 @@
   (add-to-list 'lsp-disabled-clients 'ccls)
   )
 
-(use-package! bazel-mode)
-(add-to-list 'auto-mode-alist '("BUCK" . bazel-mode))
 (add-to-list 'auto-mode-alist '(".buckconfig" . conf-toml-mode))
 
 (load! "+format")

@@ -124,10 +124,11 @@
 
 (setq projectile-project-search-path
       '("~/doc"
-        "~/doc/magpie"
+        "~/doc/peafowl"
         "~/code/hub"
         "~/code/side-projects"
         "~/code/docker"
+        "~/code/remote"
         "~/code/scripts"
         "~/code/templates"
         "~/code/nokia"
@@ -154,7 +155,7 @@
 
 (setq! link-hint-avy-all-windows t)
 
-(setq doom-theme 'doom-outrun-electric)
+(setq doom-theme 'doom-xcode)
 
 (after! magit-todos
   (add-to-list 'magit-todos-keywords-list "todo!")
@@ -164,8 +165,48 @@
 (after! ispell
   (setq ispell-local-dictionary "en_AU"))
 
+(setf (alist-get 'markdown-mode +spell-excluded-faces-alist)
+      '(markdown-code-face
+        markdown-plain-url-face
+        markdown-reference-face
+        markdown-link-face
+        markdown-inline-code-face
+        markdown-blockquote-face
+        markdown-url-face
+        markdown-markup-face
+        markdown-html-attr-value-face
+        markdown-html-attr-name-face
+        markdown-html-tag-name-face))
+
+(setf (alist-get 'org-mode +spell-excluded-faces-alist)
+      '(org-block
+        (:inherit (org-block))
+        org-block-begin-line
+        org-block-end-line
+        org-code
+        org-quote
+        org-date
+        org-formula
+        org-latex-and-related
+        org-link
+        org-meta-line
+        org-property-value
+        org-ref-cite-face
+        org-special-keyword
+        org-tag
+        org-todo
+        org-todo-keyword-done
+        org-todo-keyword-habt
+        org-todo-keyword-kill
+        org-todo-keyword-outd
+        org-todo-keyword-todo
+        org-todo-keyword-wait
+        org-verbatim))
+
 ;;; I hate my work
 (add-to-list 'auto-mode-alist '("\\.pkgfile\\'" . sh-mode))
 
 ;;; opacity
-(modify-frame-parameters nil `((alpha  98)))
+(modify-frame-parameters nil `((alpha  99)))
+
+(setq insert-directory-program "/Users/yct21/.nix-profile/bin/ls")

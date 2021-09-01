@@ -6,13 +6,14 @@
   (setq lsp-rust-show-hover-context nil)
   (setq lsp-rust-analyzer-server-display-inlay-hints t)
   (setq lsp-rust-analyzer-display-chaining-hints t)
+  (setq lsp-rust-analyzer-cargo-watch-enable nil)
   )
 
 (after! rustic
   (add-hook! rustic-mode
-    )
-    ;; (when (buffer-file-name)
-    ;;   (lsp-rust-analyzer-inlay-hints-mode +1)))
+             )
+  ;; (when (buffer-file-name)
+  ;;   (lsp-rust-analyzer-inlay-hints-mode +1)))
   )
 
 (after! quickrun
