@@ -24,5 +24,4 @@
       (:remove . ("%e"))
       (:description . "Compile rust and execute"))
     :default "rustic")
-
   )

@@ -1,6 +1,6 @@
 ;;; private/org/config.el -*- lexical-binding: t; -*-
 
-(setq hoe/peregrine "~/Library/Mobile Documents/iCloud~com~appsonthemove~beorg/Documents/peregrine")
+(setq hoe/peregrine "~/doc/peregrine")
 
 (after! org
   ;; (set-face-attribute 'org-level-1 nil :height 1.1)
@@ -112,7 +112,6 @@
   :modeline t
   :autosave t
   )
-
 
 ;;; org-attach
 (setq org-attach-dir "~/doc/org-attachments")

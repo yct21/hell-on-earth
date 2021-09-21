@@ -161,11 +161,6 @@
 
 ;;; org mode
 (map!
- :ni "C-j" (cmd!
-            (unless (equal persp-last-persp-name "observatory")
-              (persp-switch "observatory"))
-            (org-roam-find-file))
-
  (:map org-mode-map
   :ni "M-y" #'+insert-chrome-url/insert-chrome-current-tab-url-in-org
   :ni "C-o" #'link-hint-open-link
