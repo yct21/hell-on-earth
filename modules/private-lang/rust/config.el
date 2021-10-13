@@ -1,6 +1,5 @@
 (after! lsp-mode
   (setq rustic-lsp-server 'rust-analyzer)
-  (setq lsp-rust-analyzer-server-command "~/.local/bin/rust-analyzer")
   (setq lsp-rust-server 'rust-analyzer)
 
   (setq lsp-rust-show-hover-context nil)
